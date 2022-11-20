@@ -20,3 +20,32 @@ void MainWindow::initConnections()
     //et->start();
     //et->elapsed()
 }
+
+void MainWindow::powerPress(){
+
+}
+
+void MainWindow::powerRelease(){
+
+}
+
+void MainWindow::upPress(){
+
+}
+void MainWindow::downPress(){
+
+}
+void MainWindow::confirmPress(){
+
+}
+
+void MainWindow::toggleLeftEar(){
+
+}
+void MainWindow::toggleRightEar(){
+
+}
+
+void MainWindow::update(){
+
+}
