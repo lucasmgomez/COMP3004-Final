@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QElapsedTimer>
+#include <QTimer>
+#include <QDebug>
 #include "defs.h"
 
 QT_BEGIN_NAMESPACE
@@ -17,19 +19,20 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
     QTimer* t;
     QElapsedTimer* et;
     int deviceStatus = OFF; //using defs.h
     void initTimer();
     void initConnections();
     void drainBattery();
-    void temp();
+
 
 private:
     Ui::MainWindow *ui;
-	
-private slots:
 
+
+private slots:
     void powerPress();
     void powerRelease();
 
@@ -42,6 +45,5 @@ private slots:
 
     void update();
 };
-
 
 #endif // MAINWINDOW_H
