@@ -30,8 +30,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-};
-
+	
 private slots:
 
     void powerPress();
@@ -44,5 +43,9 @@ private slots:
     void toggleLeftEar();
     void toggleRightEar();
 
-    void update();
+    void update();	
+	
+};
+
+
 #endif // MAINWINDOW_H
