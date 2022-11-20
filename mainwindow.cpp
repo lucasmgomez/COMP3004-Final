@@ -15,7 +15,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-MainWindow::initConnections()
+void MainWindow::initConnections()
 {
     //et->start();
     //et->elapsed()

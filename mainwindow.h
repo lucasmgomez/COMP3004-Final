@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QElapsedTimer>
+#include "defs.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,9 +17,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
-    //
-    //include "defs.h"
     QTimer* t;
     QElapsedTimer* et;
     int deviceStatus = OFF; //using defs.h
@@ -26,7 +24,6 @@ public:
     void initConnections();
     void drainBattery();
     void temp();
-    //
 
 private:
     Ui::MainWindow *ui;
@@ -43,8 +40,7 @@ private slots:
     void toggleLeftEar();
     void toggleRightEar();
 
-    void update();	
-	
+    void update();
 };
 
 
