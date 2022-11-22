@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QDebug>
 #include "defs.h"
+#include "oasis.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,7 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
+    Oasis* oasis;
     QTimer* t;
     QElapsedTimer* et;
     int deviceStatus = OFF; //using defs.h
