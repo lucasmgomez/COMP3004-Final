@@ -21,7 +21,10 @@ SOURCES += \
 
 HEADERS += \
     defs.h \
-    mainwindow.h
+    mainwindow.h \
+    oasis.h \
+    session.h \
+    user.h
 
 FORMS += \
     mainwindow.ui
@@ -30,3 +33,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    README.md \
+    oasis-pro-comp3004.pro.user
