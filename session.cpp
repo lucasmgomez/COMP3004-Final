@@ -12,6 +12,8 @@ Session::Session() {
 
 // Getters + Setters
 
+int Session::getDuration(){return duration;}
+
 void Session::setDuration(int d) {
 	switch (d) {
 		case TWENTY:
@@ -57,4 +59,36 @@ void Session::changeIntensity(int incr) {
 
 void Session::print() const {
 	cout << "Duration: " << duration << ", Type: " << type << ", Intensity: " << intensity << endl;
+}
+
+void Session::nextDuration(){
+    if (duration+1 > FORTYFIVE)
+    {
+        setDuration((duration+1) % FORTYFIVE);
+    }
+    else
+    {
+        setDuration(duration+1);
+    }
+}
+void Session::nextType(){
+
+    if (type+1 > HUNDREDHZ)
+    {
+        setType((type+1) %HUNDREDHZ);
+    }
+    else
+    {
+        setType(type+1);
+    }
+}
+void Session::prevType(){
+    if (type-1 < 1)
+    {
+        setType(HUNDREDHZ);
+    }
+    else
+    {
+        setType(type-1);
+    }
 }

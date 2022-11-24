@@ -13,6 +13,7 @@ class Session {
 		Session();
 		
 		// getters + setters
+        int getDuration();
 		void setDuration(int);
 		void setType(int);
 		void setIntensity(int);
@@ -20,7 +21,10 @@ class Session {
 		// functions
 		void changeIntensity(int);	// increase intensity by the passed value 
 		void print() const;
-		
+
+        void nextDuration(); //selects next duration for currSession
+        void nextType(); //selects next session type for currSession
+        void prevType(); //selects previous session type for currSession
 		
 	private:
 		int duration;

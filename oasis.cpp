@@ -136,6 +136,20 @@ void Oasis::print() const {
 }
 
 
+void Oasis::nextDuration(){
+    if (power == OFF) { return; }
+    currSession->nextDuration();
+}
+void Oasis::nextType(){
+    if (power == OFF) { return; }
+    currSession->nextType();
+}
+void Oasis::prevType(){
+    if (power == OFF) { return; }
+    currSession->prevType();
+}
+
+
 
 
 

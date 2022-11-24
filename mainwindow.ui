@@ -14,17 +14,650 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="elapsedButtonTest">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>80</width>
-      <height>25</height>
+      <x>289</x>
+      <y>129</y>
+      <width>66</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLCDNumber" name="lcdInt4">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(0,255,0, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>4</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt3">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(201, 155, 28, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>3</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt2">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(201, 155, 28, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>2</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt1">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(255, 0, 0, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>130</y>
+      <width>66</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLCDNumber" name="lcdInt4_2">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(255, 255 255, 10);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>4</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt3_2">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(255, 255 255, 10);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>3</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt2_2">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(245, 243, 240, 70);
+     width: 20px;
+ }
+
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>2</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt1_2">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(255, 255 255, 10);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="startButton">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>300</y>
+      <width>100</width>
+      <height>32</height>
      </rect>
     </property>
     <property name="text">
-     <string>TEST POWER</string>
+     <string>startIcon</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="powerLED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>569</x>
+      <y>259</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(0, 255,0, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="powerButton">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>290</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>powerIcon</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="intUpButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>260</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>UpIcon</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="intDownButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>300</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DownIcon</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>20min</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="time20LED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>40min</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="time40LED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(0, 255, 0, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>User set</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="timeUserLED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="freq1LED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>freqIcon1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>freqIcon2</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="freq2LED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(0, 255,0, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="freq4LED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>freqIcon4</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="freq3LED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>30</y>
+      <width>58</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>freqIcon3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="leftLED">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>40</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>23</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+     color: rgba(0, 255,0, 100);
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>L</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="rightLED">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>40</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>23</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+     color: rgba(255,255,255, 100);
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>R</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>240</y>
+      <width>31</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QWidget" name="battBar3" native="true">
+       <property name="styleSheet">
+        <string notr="true">QWidget {
+     background-color: rgba(0, 255, 0, 0);
+     width: 20px;
+ }
+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="battBar2" native="true">
+       <property name="styleSheet">
+        <string notr="true">QWidget {
+     background-color: rgba(0, 255, 0, 100);
+     width: 20px;
+ }
+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="battBar1" native="true">
+       <property name="styleSheet">
+        <string notr="true">QWidget {
+     background-color: rgba(0, 255, 0, 100);
+     width: 20px;
+ }
+</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="shortWaveLED">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>10</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+     color: rgba(0, 255,0, 100);
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>SHORT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="otherWaveLED">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>10</y>
+      <width>51</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+     color: rgba(255 ,255,255, 100);
+ }
+</string>
+    </property>
+    <property name="text">
+     <string>50%</string>
     </property>
    </widget>
   </widget>

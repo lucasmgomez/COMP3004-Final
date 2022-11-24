@@ -32,8 +32,11 @@ void MainWindow::initTimer()
 void MainWindow::initConnections()
 {
     //elapsedButtonPressed will be the powerButton.
-    connect(ui->elapsedButtonTest,SIGNAL(pressed()),this,SLOT(powerPress()));
-    connect(ui->elapsedButtonTest,SIGNAL(released()),this,SLOT(powerRelease()));
+    connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
+    connect(ui->powerButton,SIGNAL(released()),this,SLOT(powerRelease()));
+
+    connect(ui->intUpButton,SIGNAL(pressed()),this,SLOT(upPress()));
+    connect(ui->intDownButton,SIGNAL(pressed()),this,SLOT(downPress()));
 }
 
 void MainWindow::powerPress(){
@@ -53,7 +56,7 @@ void MainWindow::powerRelease(){
         return;
     }
     //Device already on, turn off after holding power button for 1 second
-    else if (oasis->getPower() == ON && elapsed > 1)
+    if (oasis->getPower() == ON && elapsed > 1)
     {
 
         qDebug() << "+turning device off, held button for:" << elapsed << "seconds.";
@@ -64,21 +67,12 @@ void MainWindow::powerRelease(){
     else if (oasis->getPower() == ON && elapsed < 1)
     {
 
-        qDebug() << "      ++turning device on, 'tapped' button for:" << elapsed << "seconds.";
-        qDebug() << "         ++changing session type:";
-        /*
-        if (oasis->getDuration() != USERDESIGNATED)
+        qDebug() << "      ++'tapped'for:" << elapsed << "seconds.changing session type:";
+        //if (oasis->getDuration() != USERDESIGNATED)
         {
-            if (oasis->getDuration() + 1 > FORTYFIVE)
-            {
-                oasis->selectDuration((oasis->getDuration()) + 1 % FORTYFIVE);
-            }
-            else
-            {
-                oasis->selectDuration(oasis->getDuration() + 1);
-            }
+            oasis->nextDuration();
         }
-        */
+
 //        // durations
 //        #define TWENTY 1
 //        #define FORTYFIVE 2
@@ -99,10 +93,10 @@ void MainWindow::powerRelease(){
 }
 
 void MainWindow::upPress(){
-
+    oasis->nextType();
 }
 void MainWindow::downPress(){
-
+    oasis->prevType();
 }
 void MainWindow::confirmPress(){
 

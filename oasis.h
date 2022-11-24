@@ -33,7 +33,10 @@ class Oasis {
 		void selectType(int);		// set session type for currSession
 		void changeIntensity(int);	// change intensity by the passed value for currSession
 		void print() const;
-		
+
+        void nextDuration(); //selects next duration for currSession
+        void nextType(); //selects next session type for currSession
+        void prevType(); //selects previous session type for currSession
 		
 	private:
 		Session* currSession;		// pointer to the currSession to be ran
