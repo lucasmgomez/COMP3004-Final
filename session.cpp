@@ -14,6 +14,10 @@ Session::Session() {
 
 int Session::getDuration(){return duration;}
 
+int Session::getType(){return type;}
+
+int Session::getIntensity(){return intensity;}
+
 void Session::setDuration(int d) {
 	switch (d) {
 		case TWENTY:
@@ -55,6 +59,8 @@ void Session::setIntensity(int i) {
 void Session::changeIntensity(int incr) {
 	intensity = intensity + incr;
 	if (intensity < 0) { intensity = 0; }
+    else if (intensity > 8) { intensity = 8;} //is the max intensity 8?
+    cout << "intensity:" << intensity;
 }
 
 void Session::print() const {
@@ -92,3 +98,11 @@ void Session::prevType(){
         setType(type-1);
     }
 }
+
+void Session::nextIntensity(){
+    changeIntensity(1);
+}
+void Session::prevIntensity(){
+    changeIntensity(-1);
+}
+

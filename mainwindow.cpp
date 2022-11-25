@@ -26,17 +26,27 @@ void MainWindow::initTimer()
 {
     t = new QTimer(this);
     et = new QElapsedTimer();
+
+    //call the update function per second
+    connect(t, SIGNAL(timeout()), this, SLOT(update()));
+    t->start(1000);
 }
 
 
 void MainWindow::initConnections()
 {
-    //elapsedButtonPressed will be the powerButton.
+    //power button slot signal connections
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
     connect(ui->powerButton,SIGNAL(released()),this,SLOT(powerRelease()));
 
+    //up/down button slot signal connections
     connect(ui->intUpButton,SIGNAL(pressed()),this,SLOT(upPress()));
     connect(ui->intDownButton,SIGNAL(pressed()),this,SLOT(downPress()));
+
+    //confirm press
+    connect(ui->startButton,SIGNAL(pressed()),this,SLOT(confirmPress()));
+
+    //left/right ear toggle
 }
 
 void MainWindow::powerPress(){
@@ -46,12 +56,11 @@ void MainWindow::powerPress(){
 
 void MainWindow::powerRelease(){
     float elapsed = et->elapsed() / 1000.00;
-    qDebug() << "power released after:" << elapsed << " seconds";
 
     //Turn device on, if device is off.
     if (oasis->getPower() == OFF)
     {
-        qDebug() << "+turning device on";
+        qDebug() << "+turning device on: held " << elapsed << " seconds";
         oasis->turnOn();
         return;
     }
@@ -93,13 +102,32 @@ void MainWindow::powerRelease(){
 }
 
 void MainWindow::upPress(){
-    oasis->nextType();
+    if (oasis->getRunning()==false)
+    {
+        oasis->nextType();
+    }
+    else
+    {
+        oasis->nextIntensity();
+    }
 }
 void MainWindow::downPress(){
-    oasis->prevType();
+    if (oasis->getRunning()==false)
+    {
+        oasis->prevType();
+    }
+    else
+    {
+        oasis->prevIntensity();
+    }
+
+
 }
 void MainWindow::confirmPress(){
-
+    //FORCE BYPASS CONNECTION FOR NOW
+        oasis->setConnection(EXCELLENT);
+    //
+    oasis->runSession();
 }
 
 void MainWindow::toggleLeftEar(){
@@ -110,5 +138,6 @@ void MainWindow::toggleRightEar(){
 }
 
 void MainWindow::update(){
-
+    //insert battery drain here
+    oasis->useBattery();
 }
