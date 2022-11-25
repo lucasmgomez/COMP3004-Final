@@ -14,10 +14,10 @@ class Oasis {
 		
 		// getters + setters
 		int getPower() const;		// return power state of the oasis pro
-		int getBattery() const;		// return the current battery level
+        float getBattery() const;		// return the current battery level
 		int getConnection() const;	// return the result of the cinnection test
 		bool getRunning() const;	// return running state of the oasis pro
-		void setBattery(int);		// manually set the battery level
+        void setBattery(float);		// manually set the battery level
 		void setConnection(int);	// manually set the connectivity
 		void setUser(int);		// change the current user
 		
@@ -37,13 +37,15 @@ class Oasis {
         void nextDuration(); //selects next duration for currSession
         void nextType(); //selects next session type for currSession
         void prevType(); //selects previous session type for currSession
+        void nextIntensity(); //selects next intensity value
+        void prevIntensity(); //selects previous intensity value
 		
 	private:
 		Session* currSession;		// pointer to the currSession to be ran
 		User users[MAXUSERS];		// array of all users
 		int currUser;			// index of the current user
 		int power;			// state of the oasis pro (on or off)
-		int battery;			// battery level
+        float battery;			// battery level
 		int connection;			// connectivity (no, okay, or excellent)
 		bool toRecord;			// indicates if the current session is to be recorded
 		bool running;			// indicates if a session is currently running
