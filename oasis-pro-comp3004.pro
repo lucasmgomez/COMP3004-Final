@@ -40,3 +40,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     README.md \
     oasis-pro-comp3004.pro.user
+
+RESOURCES += \
+    icons.qrc
+
+

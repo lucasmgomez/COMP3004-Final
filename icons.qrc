@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>delta.png</file>
+        <file>down.png</file>
+        <file>met.png</file>
+        <file>power.png</file>
+        <file>sub-delt.png</file>
+        <file>theta.png</file>
+        <file>up.png</file>
+        <file>start.png</file>
+    </qresource>
+</RCC>
