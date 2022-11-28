@@ -45,6 +45,11 @@ private slots:
     void toggleRightEar();
 
     void update();
+    void updateDurUI(int);
+    void updateTypeUI(int);
+    void updateIntUI(int);
+    void setDefaultLEDs(bool);
+    void setConnectLEDs(int);
 };
 
 #endif // MAINWINDOW_H

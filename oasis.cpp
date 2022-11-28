@@ -6,7 +6,7 @@ Oasis::Oasis() {
 	currSession = NULL;
 	currUser = 0;
 	power = OFF;
-	battery = 100;
+    battery = 100.00;
 	connection = NO;
 	toRecord = false;
 	running = false;
@@ -20,11 +20,13 @@ Oasis::~Oasis() {
 
 // getters + setters
 
+Session* Oasis::getCurrSession() const {return currSession;}
+bool Oasis::getRunning() const {return running;}
 int Oasis::getPower() const { return power; }
-int Oasis::getBattery() const { return battery; }
+float Oasis::getBattery() const { return battery; }
 int Oasis::getConnection() const { return connection; }
 
-void Oasis::setBattery(int b) { 
+void Oasis::setBattery(float b) {
 	if (b > 100) { b = 100; }
 	else if (b < 0) { b = 0; }
 	battery = b; 
@@ -61,7 +63,23 @@ void Oasis::turnOff() {
 }
 
 void Oasis::useBattery() {
-	if (power == ON) { --battery; }
+    if (power == ON)
+    {
+        //if running == true, (if connection == 0?)
+        if (currSession->getIntensity()>0){
+            setBattery(battery - (currSession->getIntensity()/10.0));
+        }
+        else{
+            setBattery(battery - (1/10.0));
+        }
+
+
+        cout << "battery drained:" << getBattery() << endl;
+    }
+    //turn off power if battery is completely drained
+    //"Your simulation should handle battery depletion as a
+        //function of length of therapy, intensity, and connection to skin."
+    //
 }
 
 void Oasis::runSession() {
@@ -147,6 +165,14 @@ void Oasis::nextType(){
 void Oasis::prevType(){
     if (power == OFF) { return; }
     currSession->prevType();
+}
+void Oasis::nextIntensity(){
+    if (power == OFF){ return; } //|| running == false
+    currSession->nextIntensity();
+}
+void Oasis::prevIntensity(){
+    if (power == OFF){ return; } //|| running == false
+    currSession->prevIntensity();
 }
 
 
