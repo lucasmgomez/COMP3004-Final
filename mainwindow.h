@@ -28,7 +28,6 @@ public:
     void initConnections();
     void drainBattery();
 
-
 private:
     Ui::MainWindow *ui;
 
@@ -45,6 +44,9 @@ private slots:
     void toggleRightEar();
 
     void update();
+    void savePress();
+    void replayPress();
+    void updateList();
 };
 
 #endif // MAINWINDOW_H

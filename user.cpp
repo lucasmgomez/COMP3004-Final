@@ -4,6 +4,7 @@
 // Constructor
 User::User() {
 	numRecord = 0;
+
 }
 
 User::~User() {
@@ -16,6 +17,9 @@ User::~User() {
 
 // functions
 
+int User::getnumRecord() const { return numRecord; }
+
+
 void User::record(Session* s) {
 	if (numRecord == MAXRECORD) { 
 		cout << "Can't record session" << endl;
@@ -26,8 +30,8 @@ void User::record(Session* s) {
 	numRecord++;
 }
 
-Session* User::replay(int s) const {
-	if (s >= 0 && s < numRecord) { return recorded[s]; }
+Session* User::replay(int s)  {
+    if (s >= 0 && s < numRecord) { return recorded[s]; }
 	else { 
 		cout << "Invalid recording" << endl; 
 		return NULL;
