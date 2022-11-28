@@ -10,6 +10,8 @@ Oasis::Oasis() {
 	connection = NO;
 	toRecord = false;
 	running = false;
+    leftEarConnected = false;
+    rightEarConnected = false;
 }
 
 Oasis::~Oasis() {
@@ -20,6 +22,8 @@ Oasis::~Oasis() {
 
 // getters + setters
 
+int Oasis::getLeftEarConnected() const {return leftEarConnected;}
+int Oasis::getRightEarConnected() const {return rightEarConnected;}
 bool Oasis::getRunning() const {return running;}
 int Oasis::getPower() const { return power; }
 float Oasis::getBattery() const { return battery; }
@@ -172,6 +176,23 @@ void Oasis::nextIntensity(){
 void Oasis::prevIntensity(){
     if (power == OFF){ return; } //|| running == false
     currSession->prevIntensity();
+}
+
+
+void Oasis::toggleLeftEar(){
+
+}
+void Oasis::toggleRightEar(){
+
+}
+
+void  Oasis::setLeftEar(int)
+{
+
+}
+void  Oasis::setRightEar(int)
+{
+
 }
 
 

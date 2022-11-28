@@ -16,11 +16,15 @@ class Oasis {
 		int getPower() const;		// return power state of the oasis pro
         float getBattery() const;		// return the current battery level
 		int getConnection() const;	// return the result of the cinnection test
+        int getLeftEarConnected() const; //return if the left ear is connected
+        int getRightEarConnected() const; //return if the right ear is connected
 		bool getRunning() const;	// return running state of the oasis pro
         void setBattery(float);		// manually set the battery level
 		void setConnection(int);	// manually set the connectivity
 		void setUser(int);		// change the current user
-		
+        void setLeftEar(int); // set status of left ear connection
+        void setRightEar(int); // set status of right ear connection
+
 		// functions
 		void turnOn();			// turns on the oasis pro
 		void turnOff();			// turns off the oasis pro
@@ -33,6 +37,10 @@ class Oasis {
 		void selectType(int);		// set session type for currSession
 		void changeIntensity(int);	// change intensity by the passed value for currSession
 		void print() const;
+
+        void toggleLeftEar(); //switches the state of connection of left ear
+        void toggleRightEar(); //switches the state of connection of right ear
+
 
         void nextDuration(); //selects next duration for currSession
         void nextType(); //selects next session type for currSession
@@ -49,8 +57,8 @@ class Oasis {
 		int connection;			// connectivity (no, okay, or excellent)
 		bool toRecord;			// indicates if the current session is to be recorded
 		bool running;			// indicates if a session is currently running
-		
-		
+        int leftEarConnected;
+        int rightEarConnected;
 		
 };
 

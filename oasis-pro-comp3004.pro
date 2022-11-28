@@ -38,10 +38,21 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    CMakeLists.txt \
+    CMakeLists.txt.user \
     README.md \
-    oasis-pro-comp3004.pro.user
+    delta.png \
+    down.png \
+    met.png \
+    oasis-pro-comp3004.pro.user \
+    power.png \
+    start.png \
+    sub-delt.png \
+    theta.png \
+    up.png
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+
 
 

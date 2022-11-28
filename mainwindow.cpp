@@ -9,8 +9,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
-
     oasis = new Oasis();
     initConnections();
     initTimer();
@@ -40,6 +38,7 @@ void MainWindow::initConnections()
     connect(ui->powerButton,SIGNAL(released()),this,SLOT(powerRelease()));
 
     //up/down button slot signal connections
+    //connect(ui->intUpButton,SIGNAL(clicked()),this,SLOT(upPress()));
     connect(ui->intUpButton,SIGNAL(pressed()),this,SLOT(upPress()));
     connect(ui->intDownButton,SIGNAL(pressed()),this,SLOT(downPress()));
 
@@ -52,9 +51,11 @@ void MainWindow::initConnections()
 void MainWindow::powerPress(){
     qDebug() << "power pressed (counting milliseconds)";
     et->start();
+    //case for if user never releases power button?
 }
 
 void MainWindow::powerRelease(){
+
     float elapsed = et->elapsed() / 1000.00;
 
     //Turn device on, if device is off.
@@ -87,15 +88,6 @@ void MainWindow::powerRelease(){
 //        #define FORTYFIVE 2
 //        #define USERDESIGNATED 3
 
-//        // types
-//        #define MET 1
-//        #define SUBDELTA 2
-//        #define DELTA 3
-//        #define THETA 4
-//        #define ALPHA 5
-//        #define SMR 6
-//        #define BETA 7
-//        #define HUNDREDHZ 8
         return;
     }
     //other cases...
@@ -124,20 +116,38 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
-    //FORCE BYPASS CONNECTION FOR NOW
-        oasis->setConnection(EXCELLENT);
-    //
-    oasis->runSession();
+    oasis->runSession(); //runSession checks if connection > 0 before running
 }
 
 void MainWindow::toggleLeftEar(){
-
+    oasis->toggleLeftEar();
 }
 void MainWindow::toggleRightEar(){
-
+    oasis->toggleRightEar();
 }
 
 void MainWindow::update(){
-    //insert battery drain here
+    if(oasis->getPower()==ON && oasis->getRunning()==false){
+        if (shutdownCounter < 120)
+        {
+         shutdownCounter++;
+         qDebug() << "              shutdown counter:" << shutdownCounter;
+        }
+        else
+        {
+            shutdownCounter = 0;
+            oasis->turnOff();
+            return;
+        }
+    }
+    else if(oasis->getPower()==ON && oasis->getRunning()==true){
+        //check how long a session is running for (or how much time is left)
+    }
     oasis->useBattery();
+}
+
+//...
+void MainWindow::softOff()
+{
+
 }
