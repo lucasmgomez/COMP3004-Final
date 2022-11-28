@@ -14,12 +14,12 @@ class User {
 			
 		// functions
 		void record(Session*);		// adds sessions to recorded list
-		Session* replay(int) const;	// returns the session at the specified index in the recorded list
-		void print() const;
-		
+        int getnumRecord() const;	// return the number of recorded sessions
+        Session* replay(int) ;	// returns the session at the specified index in the recorded list
+        void print() const;
 		
 	private:
-		Session* recorded[MAXRECORD];	// array of sessions recorded
+        Session *recorded[MAXRECORD];	// array of sessions recorded
 		int numRecord;			// number of recorded sessions
 		
 		

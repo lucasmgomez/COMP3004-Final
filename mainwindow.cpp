@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
     oasis = new Oasis();
     initConnections();
     initTimer();
-
 }
 
 MainWindow::~MainWindow()
@@ -47,6 +45,48 @@ void MainWindow::initConnections()
     connect(ui->startButton,SIGNAL(pressed()),this,SLOT(confirmPress()));
 
     //left/right ear toggle
+
+    connect(ui->saveButton,SIGNAL(pressed()),this,SLOT(savePress()));
+    connect(ui->replayButton,SIGNAL(pressed()),this,SLOT(replayPress()));
+    connect(ui->updateList,SIGNAL(pressed()),this,SLOT(updateList()));
+
+}
+
+void MainWindow::updateList(){
+    int cur=ui->currentUser->toPlainText().toInt();
+    oasis->setUser(cur);
+    User* user=oasis->getUser();
+    ui->sessionHistory->clear();
+    for (int i = 0; i < user->getnumRecord(); i++) {
+        Session* sess= user->replay(i);
+        std::string str = "Session #:"+std::to_string(i)+" duration:"+std::to_string(sess->getDuration())+" type:"+std::to_string(sess->getType())+" intesity:"+std::to_string(sess->getIntensity());
+        QString qstr = QString::fromStdString(str);
+        ui->sessionHistory->append(qstr);
+    }
+}
+
+void MainWindow::savePress(){
+    if (oasis->getPower()){
+        if (ui->currentUser->document()->isEmpty()){
+            qDebug() << "Please specify user #";
+            return;
+        }
+        oasis->setUser(ui->currentUser->toPlainText().toInt());
+        oasis->record();
+        oasis->endSession(); // for testing needs to be remove when endSession implement inside Oasis
+        updateList();
+    }
+}
+
+void MainWindow::replayPress(){
+    if (oasis->getPower()){
+        if (ui->replaySes->document()->isEmpty()){
+            qDebug() << "Please specify user # and replay session #";
+            return;
+        }
+        oasis->setUser(ui->currentUser->toPlainText().toInt());
+        oasis->replay(ui->replaySes->toPlainText().toInt());
+    }
 }
 
 void MainWindow::powerPress(){
