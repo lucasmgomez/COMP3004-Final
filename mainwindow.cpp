@@ -71,10 +71,17 @@ void MainWindow::powerRelease(){
         return;
     }
     //Change duration
-    else if (oasis->getPower() == ON && elapsed < 1){
+    else if (oasis->getPower() == ON && elapsed < 1 && oasis->getRunning()==false){
         qDebug() << "      ++'tapped'for:" << elapsed << "seconds.changing session type:";   
         {
             oasis->nextDuration();
+        }
+        return;
+    }
+    else if (oasis->getPower() == ON && elapsed < 1 && oasis->getRunning()==true){
+        qDebug() << "      ++'tapped'for:" << elapsed << "seconds. initiating softOff:";
+        {
+            interruptSession=true;
         }
         return;
     }
@@ -103,9 +110,16 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
+    //temp for testing
+    oasis->setConnection(2);
+    oasis->setCustomUserDur(1);
+    oasis->setDuration(3);
+    //temp for testing
+    if (oasis->getRunning()==false){
+        oasis->runSession(); //runSession checks if connection > 0 before running
+        sessionRunTime = 0;
+    }
 
-    //oasis->setConnection(2);//temp for testing
-    oasis->runSession(); //runSession checks if connection > 0 before running
 }
 
 void MainWindow::toggleLeftEar(){
@@ -137,16 +151,32 @@ void MainWindow::update(){
     //session runtime counter
     else if(oasis->getPower()==ON && oasis->getRunning()==true){
         if (shutdownCounter>0){shutdownCounter=0;}//reset idle shutdown counter
-
         qDebug() << "       selected duration:" << oasis->getDurationInMin()*60 << " | runTime:" << sessionRunTime;
 
-        if (oasis->getDurationInMin()*60 - sessionRunTime > 0){
-            sessionRunTime++; //session runtime counter
+        if (interruptSession == true)
+        {
+            sessionRunTime++;
+            if (oasis->getIntensity() > 0){
+                softOff();
+            }
+            else{
+                interruptSession = false;
+                oasis->endSession();
+            }
         }
-        else{
-            sessionRunTime = 0;
-            oasis->endSession();
+        else
+        {
+            if (oasis->getDurationInMin()*60 - sessionRunTime > 0){
+                if(oasis->getDurationInMin()*60 - sessionRunTime < 10){
+                    softOff();
+                }
+                sessionRunTime++; //session runtime counter
+            }
+            else{
+                oasis->endSession();
+            }
         }
+
     }
     //drain battery
     oasis->useBattery();
@@ -155,5 +185,9 @@ void MainWindow::update(){
 //...
 void MainWindow::softOff()
 {
-
+    //experimental code
+    if(oasis->getIntensity()>0)
+    {
+        oasis->prevIntensity();
+    }
 }

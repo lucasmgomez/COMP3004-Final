@@ -23,6 +23,7 @@ public:
     Oasis* oasis;
     QTimer* t;
     QElapsedTimer* et;
+    bool interruptSession = false; //when to initiate soft off
     int shutdownCounter = 0; //120secs force turn off; in seconds
     int sessionRunTime = 0; //session run time; in seconds
 

@@ -24,6 +24,8 @@ class Oasis {
 		void setUser(int);		// change the current user
         void setLeftEar(bool); // set status of left ear connection
         void setRightEar(bool); // set status of right ear connection
+        void setDuration(int); // set duration of currSession
+        int getIntensity(); //return currSession intensity
 
         void setCustomUserDur(int); //sets custom user designated duration, in minutes
         int getDurationInMin(); //gets duration in minutes based on current duration selection

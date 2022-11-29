@@ -68,8 +68,8 @@ void Oasis::turnOff() {
 void Oasis::useBattery() {
     if (power == ON)
     {
-        //if running == true, (if connection == 0?)
-        if (currSession->getIntensity()>0){
+        //Will connection affect battery drain?
+        if (running == true && currSession->getIntensity()>0){
             setBattery(battery - (currSession->getIntensity()/10.0));
         }
         else{
@@ -201,7 +201,13 @@ void Oasis::setCustomUserDur(int c){
 int Oasis::getDurationInMin(){
     return currSession->getDurationInMin();
 }
+void Oasis::setDuration(int d){
+    currSession->setDuration(d);
+}
 
+int Oasis::getIntensity(){
+    return currSession->getIntensity();
+}
 
 
 
