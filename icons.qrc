@@ -8,5 +8,7 @@
         <file>theta.png</file>
         <file>up.png</file>
         <file>start.png</file>
+        <file>save.png</file>
+        <file>replay.png</file>
     </qresource>
 </RCC>

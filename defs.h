@@ -18,10 +18,10 @@ using namespace std;
 #define SUBDELTA 2
 #define DELTA 3
 #define THETA 4
-#define ALPHA 5
-#define SMR 6
-#define BETA 7
-#define HUNDREDHZ 8
+//#define ALPHA 5
+//#define SMR 6
+//#define BETA 7
+//#define HUNDREDHZ 8
 
 // durations
 #define TWENTY 1

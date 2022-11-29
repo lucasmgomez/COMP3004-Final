@@ -3,7 +3,7 @@
 
 // Constructor
 Oasis::Oasis() {
-	currSession = NULL;
+    currSession = new Session;
 	currUser = 0;
 	power = OFF;
     battery = 100.00;
@@ -24,10 +24,12 @@ Oasis::~Oasis() {
 
 int Oasis::getLeftEarConnected() const {return leftEarConnected;}
 int Oasis::getRightEarConnected() const {return rightEarConnected;}
+Session* Oasis::getCurrSession() const {return currSession;}
 bool Oasis::getRunning() const {return running;}
 int Oasis::getPower() const { return power; }
 float Oasis::getBattery() const { return battery; }
 int Oasis::getConnection() const { return connection; }
+User* Oasis::getUser() { return users+currUser; }
 
 void Oasis::setBattery(float b) {
 	if (b > 100) { b = 100; }
@@ -51,15 +53,15 @@ void Oasis::setUser(int u) {
 
 void Oasis::turnOn() {
 	cout << "Turning on Oasis pro" << endl;
-	power = ON;
-	currSession = new Session();
+    power = ON;
+    currSession = new Session();
 }
 
 void Oasis::turnOff() {
 	cout << "Turning off Oasis pro" << endl;
 	if (currSession != NULL) {
-		delete currSession;
-		currSession = NULL;
+        //delete currSession;
+        currSession = NULL;
 	}
 	running = false;
 	power = OFF;	
@@ -100,12 +102,12 @@ void Oasis::endSession() {
 	if (power == OFF) { return; }
 	cout << "... session complete." << endl;
 	if (toRecord) {
-		users[currUser].record(currSession);
+        users[currUser].record(currSession);
 		currSession = NULL;
 		toRecord = false;
 	}
-	else {
-		delete currSession;
+    else {
+        //delete currSession;
 		currSession = NULL;
 	}
 	turnOff();

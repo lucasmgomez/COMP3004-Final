@@ -13,6 +13,7 @@ class Oasis {
 		~Oasis();
 		
 		// getters + setters
+        Session* getCurrSession() const;     // return current session of the oasis pro
 		int getPower() const;		// return power state of the oasis pro
         float getBattery() const;		// return the current battery level
 		int getConnection() const;	// return the result of the cinnection test
@@ -22,14 +23,8 @@ class Oasis {
         void setBattery(float);		// manually set the battery level
 		void setConnection(int);	// manually set the connectivity
 		void setUser(int);		// change the current user
-        void setLeftEar(bool); // set status of left ear connection
-        void setRightEar(bool); // set status of right ear connection
-        void setDuration(int); // set duration of currSession
-        int getIntensity(); //return currSession intensity
-
-        void setCustomUserDur(int); //sets custom user designated duration, in minutes
-        int getDurationInMin(); //gets duration in minutes based on current duration selection
-
+        User* getUser();		// return the current user
+		
 		// functions
 		void turnOn();			// turns on the oasis pro
 		void turnOff();			// turns off the oasis pro
@@ -56,7 +51,7 @@ class Oasis {
 
 		
 	private:
-		Session* currSession;		// pointer to the currSession to be ran
+        Session* currSession;		// pointer to the currSession to be ran
 		User users[MAXUSERS];		// array of all users
 		int currUser;			// index of the current user
 		int power;			// state of the oasis pro (on or off)
