@@ -21,6 +21,7 @@ class Oasis {
         void setBattery(float);		// manually set the battery level
 		void setConnection(int);	// manually set the connectivity
 		void setUser(int);		// change the current user
+        User* getUser();		// return the current user
 		
 		// functions
 		void turnOn();			// turns on the oasis pro
@@ -42,7 +43,7 @@ class Oasis {
         void prevIntensity(); //selects previous intensity value
 		
 	private:
-		Session* currSession;		// pointer to the currSession to be ran
+        Session* currSession;		// pointer to the currSession to be ran
 		User users[MAXUSERS];		// array of all users
 		int currUser;			// index of the current user
 		int power;			// state of the oasis pro (on or off)

@@ -30,7 +30,6 @@ public:
     void initConnections();
     void drainBattery();
 
-
 private:
     Ui::MainWindow *ui;
 
@@ -55,6 +54,9 @@ private slots:
     void setBatteryUI();
 
     void delay(int);
+    void savePress();
+    void replayPress();
+    void updateList();
 };
 
 #endif // MAINWINDOW_H
