@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>402</height>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <x>289</x>
       <y>99</y>
       <width>66</width>
-      <height>231</height>
+      <height>256</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -145,7 +145,7 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>280</y>
+      <y>300</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -165,8 +165,8 @@ background-repeat: none;
    <widget class="QWidget" name="powerLED" native="true">
     <property name="geometry">
      <rect>
-      <x>629</x>
-      <y>249</y>
+      <x>569</x>
+      <y>269</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -184,8 +184,8 @@ background-repeat: none;
    <widget class="QPushButton" name="powerButton">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>280</y>
+      <x>560</x>
+      <y>300</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -205,7 +205,7 @@ background: url(:power.png);
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>240</y>
+      <y>260</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -226,7 +226,7 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>290</y>
+      <y>310</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -574,7 +574,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -600,7 +599,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -614,51 +612,6 @@ background-repeat: none;
      <string>R</string>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>250</y>
-      <width>31</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QWidget" name="battBar3" native="true">
-       <property name="styleSheet">
-        <string notr="true">QWidget {
-     background-color: rgba(0, 255, 0, 0);
-     width: 20px;
- }
-</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="battBar2" native="true">
-       <property name="styleSheet">
-        <string notr="true">QWidget {
-     background-color: rgba(0, 255, 0, 100);
-     width: 20px;
- }
-</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="battBar1" native="true">
-       <property name="styleSheet">
-        <string notr="true">QWidget {
-     background-color: rgba(0, 255, 0, 100);
-     width: 20px;
- }
-</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QLabel" name="shortWaveLED">
     <property name="geometry">
      <rect>
@@ -671,7 +624,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -697,7 +649,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -711,6 +662,137 @@ background-repeat: none;
      <string>50%</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="batteryEdit">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>330</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>100</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>330</y>
+      <width>41</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="connectBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>103</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>NO</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>OKAY</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>EXCELLENt</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connectivity</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>270</y>
+      <width>31</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame{
+     background-color: rgba(255, 255, 255, 30);
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>31</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QWidget" name="battBar3" native="true">
+        <property name="styleSheet">
+         <string notr="true">QWidget {
+     background-color: rgba(0, 255, 0, 100);
+     width: 20px;
+ }
+</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="battBar2" native="true">
+        <property name="styleSheet">
+         <string notr="true">QWidget {
+     background-color: rgba(0, 255, 0, 100);
+     width: 20px;
+ }
+</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="battBar1" native="true">
+        <property name="styleSheet">
+         <string notr="true">QWidget {
+     background-color: rgba(0, 255, 0, 100);
+     width: 20px;
+ }
+</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -718,7 +800,7 @@ background-repeat: none;
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>

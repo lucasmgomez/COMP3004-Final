@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <QElapsedTimer>
 #include <QTimer>
+#include <QTime>
 #include <QDebug>
+#include <QRegularExpression>
 #include "defs.h"
 #include "oasis.h"
 
@@ -50,6 +52,9 @@ private slots:
     void updateIntUI(int);
     void setDefaultLEDs(bool);
     void setConnectLEDs(int);
+    void setBatteryUI();
+
+    void delay(int);
 };
 
 #endif // MAINWINDOW_H

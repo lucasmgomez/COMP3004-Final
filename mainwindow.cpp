@@ -47,6 +47,9 @@ void MainWindow::initConnections()
     connect(ui->startButton,SIGNAL(pressed()),this,SLOT(confirmPress()));
 
     //left/right ear toggle
+
+    //battery change
+    connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(setBatteryUI()));
 }
 
 void MainWindow::powerPress(){
@@ -139,11 +142,11 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
-    //FORCE BYPASS CONNECTION FOR NOW
-        oasis->setConnection(EXCELLENT);
+    oasis->setConnection(ui->connectBox->currentIndex());
+    setConnectLEDs(ui->connectBox->currentIndex());
+    delay(2);
+    updateIntUI(1);
 
-    // setConnectLEDs(EXCELLENT); implement when connectivity is implimented
-    //
     oasis->runSession();
 }
 
@@ -292,23 +295,76 @@ void MainWindow::setDefaultLEDs(bool on){
 
 void MainWindow::setConnectLEDs(int level){
     if (level == NO){
-        // impliment when connectivity isn't forced
+        for (int i = 1; i<= 8; ++i){
+             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
+            if (i < 3){
+                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+            }
+            else{
+                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+            }
+        }
     }
     else if (level == OKAY){
-        // impliment when connectivity isn't forced
+        for (int i = 1; i<= 8; ++i){
+             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
+            if (3 < i && i <= 6){
+                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(201, 155, 28, 70);width: 20px;}");
+            }
+            else{
+                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+            }
+        }
     }
     else if (level == EXCELLENT){
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
-            if (i <= 3){
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 255, 0, 0);width: 20px;}");
-            }
-            else if (3 < i && i <= 6){
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(201, 155, 28, 70);width: 20px;}");
+            if (i > 6){
+                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 255, 0, 70);width: 20px;}");
             }
             else{
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
             }
         }
     }
 }
+
+void MainWindow::setBatteryUI(){
+
+    auto batteryEdit = findChild<QLineEdit*>("batteryEdit");
+    /*QRegularExpression re("\\d*");  // a digit (\d), zero or more times (*)
+    if (re.anchoredPattern(batteryEdit->text())){
+
+    }*/
+    auto battBar1 = findChild<QWidget*>("battBar1");
+    auto battBar2 = findChild<QWidget*>("battBar2");
+    auto battBar3 = findChild<QWidget*>("battBar3");
+    int level = batteryEdit->text().toInt();
+    if (level > 70){
+        // change battery display to full and green
+        battBar1->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        battBar2->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        battBar3->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
+    }
+    else if (level > 40 && level <= 70){
+        // change battery display to semi full and yellow
+        battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+    }
+    else{
+        // change battery display to low and red
+        battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 100);width: 20px;}");
+        battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        battBar3->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+    }
+}
+
+void MainWindow::delay(int time)
+{
+    QTime dieTime= QTime::currentTime().addSecs(time);
+    while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
+
+
