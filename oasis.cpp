@@ -10,6 +10,8 @@ Oasis::Oasis() {
 	connection = NO;
 	toRecord = false;
 	running = false;
+    leftEarConnected = false;
+    rightEarConnected = false;
 }
 
 Oasis::~Oasis() {
@@ -20,6 +22,8 @@ Oasis::~Oasis() {
 
 // getters + setters
 
+int Oasis::getLeftEarConnected() const {return leftEarConnected;}
+int Oasis::getRightEarConnected() const {return rightEarConnected;}
 Session* Oasis::getCurrSession() const {return currSession;}
 bool Oasis::getRunning() const {return running;}
 int Oasis::getPower() const { return power; }
@@ -66,8 +70,8 @@ void Oasis::turnOff() {
 void Oasis::useBattery() {
     if (power == ON)
     {
-        //if running == true, (if connection == 0?)
-        if (currSession->getIntensity()>0){
+        //Will connection affect battery drain?
+        if (running == true && currSession->getIntensity()>0){
             setBattery(battery - (currSession->getIntensity()/10.0));
         }
         else{
@@ -177,6 +181,35 @@ void Oasis::prevIntensity(){
 }
 
 
+void Oasis::toggleLeftEar(){
+    leftEarConnected = !leftEarConnected;
+}
+void Oasis::toggleRightEar(){
+    rightEarConnected = !rightEarConnected;
+}
+
+void  Oasis::setLeftEar(bool state)
+{
+    leftEarConnected = state;
+}
+void  Oasis::setRightEar(bool state)
+{
+    rightEarConnected = state;
+}
+
+void Oasis::setCustomUserDur(int c){
+    currSession->setCustomUserDur(c);
+}
+int Oasis::getDurationInMin(){
+    return currSession->getDurationInMin();
+}
+void Oasis::setDuration(int d){
+    currSession->setDuration(d);
+}
+
+int Oasis::getIntensity(){
+    return currSession->getIntensity();
+}
 
 
 

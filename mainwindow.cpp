@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
-
     oasis = new Oasis();
     initConnections();
     initTimer();
@@ -33,11 +31,12 @@ void MainWindow::initTimer()
 
 void MainWindow::initConnections()
 {
-    //power button slot signal connections
+    //power button
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
     connect(ui->powerButton,SIGNAL(released()),this,SLOT(powerRelease()));
 
-    //up/down button slot signal connections
+    //up/down button
+    //connect(ui->intUpButton,SIGNAL(clicked()),this,SLOT(upPress()));
     connect(ui->intUpButton,SIGNAL(pressed()),this,SLOT(upPress()));
     connect(ui->intDownButton,SIGNAL(pressed()),this,SLOT(downPress()));
 
@@ -94,14 +93,15 @@ void MainWindow::replayPress(){
 void MainWindow::powerPress(){
     qDebug() << "power pressed (counting milliseconds)";
     et->start();
+    //case for if user never releases power button?
 }
 
 void MainWindow::powerRelease(){
+
     float elapsed = et->elapsed() / 1000.00;
 
-    //Turn device on, if device is off.
-    if (oasis->getPower() == OFF)
-    {
+    //Turn on
+    if (oasis->getPower() == OFF){
         // Turn on lights to default
         setDefaultLEDs(true);
         //setConnectLEDs();
@@ -110,43 +110,30 @@ void MainWindow::powerRelease(){
         oasis->turnOn();
         return;
     }
-    //Device already on, turn off after holding power button for 1 second
-    if (oasis->getPower() == ON && elapsed > 1)
-    {
+    //Force turn off
+    if (oasis->getPower() == ON && elapsed > 1){
         setDefaultLEDs(false);
-        qDebug() << "+turning device off, held button for:" << elapsed << "seconds.";
+        qDebug() << "+turning device off, held button for:" << elapsed << "sec.";
         oasis->turnOff();
         return;
     }
-    //Device already on, change duration type ("If device in the correct mode")
-    else if (oasis->getPower() == ON && elapsed < 1)
-    {
-
-        qDebug() << "      ++'tapped'for:" << elapsed << "seconds.changing session type:";
-        //if (oasis->getDuration() != USERDESIGNATED)
+    //Change duration
+    else if (oasis->getPower() == ON && elapsed < 1 && oasis->getRunning()==false){
+        qDebug() << "      ++'tapped'for:" << elapsed << "sec. [changing session type]:";   
         {
             oasis->nextDuration();
             Session* sess = oasis->getCurrSession();
             updateDurUI(sess->getDuration());
         }
-
-//        // durations
-//        #define TWENTY 1
-//        #define FORTYFIVE 2
-//        #define USERDESIGNATED 3
-
-//        // types
-//        #define MET 1
-//        #define SUBDELTA 2
-//        #define DELTA 3
-//        #define THETA 4
-//        #define ALPHA 5
-//        #define SMR 6
-//        #define BETA 7
-//        #define HUNDREDHZ 8
         return;
     }
-    //other cases...
+    else if (oasis->getPower() == ON && elapsed < 1 && oasis->getRunning()==true){
+        qDebug() << "      ++'tapped'for:" << elapsed << "sec. [initiating softOff]:";
+        {
+            interruptSession=true;
+        }
+        return;
+    }
 }
 
 void MainWindow::upPress(){
@@ -181,26 +168,90 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
+    //temp for testing
+    // oasis->setConnection(2);
+    // oasis->setCustomUserDur(1);
+    // oasis->setDuration(3);
+    //temp for testing
+    if (oasis->getRunning()==false){
+        oasis->runSession(); //runSession checks if connection > 0 before running
+        sessionRunTime = 0;
+    }
     oasis->setConnection(ui->connectBox->currentIndex());
     setConnectLEDs(ui->connectBox->currentIndex());
     delay(2);
     updateIntUI(1);
-
-    oasis->runSession();
 }
 
 void MainWindow::toggleLeftEar(){
-
+    oasis->toggleLeftEar();
 }
 void MainWindow::toggleRightEar(){
-
+    oasis->toggleRightEar();
 }
 
 void MainWindow::update(){
-    //insert battery drain here
+    //reset counters if power off
+    if(oasis->getPower()==OFF){
+        if (shutdownCounter > 0){shutdownCounter=0;}
+        if (sessionRunTime > 0){sessionRunTime=0;}
+        return;
+    }
+    //idle shutdown counter
+    if(oasis->getPower()==ON && oasis->getRunning()==false){
+        if (shutdownCounter < 120){
+         shutdownCounter++;
+         qDebug() << "              shutdown counter:" << shutdownCounter;
+        }
+        else{
+            shutdownCounter = 0;
+            oasis->turnOff();
+            return;
+        }
+    }
+    //session runtime counter
+    else if(oasis->getPower()==ON && oasis->getRunning()==true){
+        if (shutdownCounter>0){shutdownCounter=0;}//reset idle shutdown counter
+        qDebug() << "       selected duration:" << oasis->getDurationInMin()*60 << " | runTime:" << sessionRunTime;
+
+        if (interruptSession == true) //interrupting a session and initiate softOff
+        {
+            sessionRunTime++;
+            if (oasis->getIntensity() > 1){
+                softOff();
+            }
+            else{
+                interruptSession = false;
+                oasis->endSession();
+            }
+        }
+        else //determining length of session before initiating softOff when it almost finishes
+        {
+            if (oasis->getDurationInMin()*60 - sessionRunTime > 0){
+                if(oasis->getDurationInMin()*60 - sessionRunTime < 10){
+                    softOff();
+                }
+                sessionRunTime++; //session runtime counter
+            }
+            else{
+                oasis->endSession();
+            }
+        }
+
+    }
+    //drain battery
     oasis->useBattery();
 }
 
+//decreasing the intensity for softOff
+void MainWindow::softOff()
+{
+    //experimental code
+    if(oasis->getIntensity()>1)
+    {
+        oasis->prevIntensity();
+    }
+}
 void MainWindow::updateDurUI(int dur){
     if (dur == TWENTY){
         auto time20LED = findChild<QWidget*>("time20LED");

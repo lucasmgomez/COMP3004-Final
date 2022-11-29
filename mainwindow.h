@@ -25,7 +25,10 @@ public:
     Oasis* oasis;
     QTimer* t;
     QElapsedTimer* et;
-    int deviceStatus = OFF; //using defs.h
+    bool interruptSession = false; //variable to initiate soft off
+    int shutdownCounter = 0; //120secs force turn off; in seconds
+    int sessionRunTime = 0; //session run time; in seconds
+
     void initTimer();
     void initConnections();
     void drainBattery();
@@ -46,6 +49,7 @@ private slots:
     void toggleRightEar();
 
     void update();
+    void softOff();
     void updateDurUI(int);
     void updateTypeUI(int);
     void updateIntUI(int);
