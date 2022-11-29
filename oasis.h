@@ -13,6 +13,7 @@ class Oasis {
 		~Oasis();
 		
 		// getters + setters
+        Session* getCurrSession() const;     // return current session of the oasis pro
 		int getPower() const;		// return power state of the oasis pro
         float getBattery() const;		// return the current battery level
 		int getConnection() const;	// return the result of the cinnection test

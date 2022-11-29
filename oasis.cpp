@@ -20,6 +20,7 @@ Oasis::~Oasis() {
 
 // getters + setters
 
+Session* Oasis::getCurrSession() const {return currSession;}
 bool Oasis::getRunning() const {return running;}
 int Oasis::getPower() const { return power; }
 float Oasis::getBattery() const { return battery; }

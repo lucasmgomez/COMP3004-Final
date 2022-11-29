@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <QElapsedTimer>
 #include <QTimer>
+#include <QTime>
 #include <QDebug>
+#include <QRegularExpression>
 #include "defs.h"
 #include "oasis.h"
 
@@ -44,6 +46,14 @@ private slots:
     void toggleRightEar();
 
     void update();
+    void updateDurUI(int);
+    void updateTypeUI(int);
+    void updateIntUI(int);
+    void setDefaultLEDs(bool);
+    void setConnectLEDs(int);
+    void setBatteryUI();
+
+    void delay(int);
     void savePress();
     void replayPress();
     void updateList();
