@@ -180,10 +180,10 @@ void Oasis::prevIntensity(){
 
 
 void Oasis::toggleLeftEar(){
-
+    leftEarConnected = !leftEarConnected;
 }
 void Oasis::toggleRightEar(){
-
+    rightEarConnected = !rightEarConnected;
 }
 
 void  Oasis::setLeftEar(int)

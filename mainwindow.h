@@ -23,13 +23,7 @@ public:
     Oasis* oasis;
     QTimer* t;
     QElapsedTimer* et;
-    int deviceStatus = OFF; //using defs.h
-    int shutdownCounter = 0; //increase by 1 per second, reset when appropriate
-                                //2mins = 120seconds, if we hit 120, the device turns off. if no session is running.
-                                //todo:
-                                //warn low battery function?
-                                //warn lowest battery function? force user to change battery and wont start sessions.
-                                //user stuff...
+    int shutdownCounter = 0; //2mins/120secs force turn off
     int sessionRunTime = 0; //counter for session runtime? per second.
 
     void initTimer();

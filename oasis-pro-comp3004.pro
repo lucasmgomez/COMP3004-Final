@@ -38,8 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    CMakeLists.txt \
-    CMakeLists.txt.user \
     README.md \
     delta.png \
     down.png \

@@ -33,11 +33,11 @@ void MainWindow::initTimer()
 
 void MainWindow::initConnections()
 {
-    //power button slot signal connections
+    //power button
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
     connect(ui->powerButton,SIGNAL(released()),this,SLOT(powerRelease()));
 
-    //up/down button slot signal connections
+    //up/down button
     //connect(ui->intUpButton,SIGNAL(clicked()),this,SLOT(upPress()));
     connect(ui->intUpButton,SIGNAL(pressed()),this,SLOT(upPress()));
     connect(ui->intDownButton,SIGNAL(pressed()),this,SLOT(downPress()));
@@ -58,39 +58,26 @@ void MainWindow::powerRelease(){
 
     float elapsed = et->elapsed() / 1000.00;
 
-    //Turn device on, if device is off.
-    if (oasis->getPower() == OFF)
-    {
+    //Turn on
+    if (oasis->getPower() == OFF){
         qDebug() << "+turning device on: held " << elapsed << " seconds";
         oasis->turnOn();
         return;
     }
-    //Device already on, turn off after holding power button for 1 second
-    if (oasis->getPower() == ON && elapsed > 1)
-    {
-
+    //Force turn off
+    if (oasis->getPower() == ON && elapsed > 1){
         qDebug() << "+turning device off, held button for:" << elapsed << "seconds.";
         oasis->turnOff();
         return;
     }
-    //Device already on, change duration type ("If device in the correct mode")
-    else if (oasis->getPower() == ON && elapsed < 1)
-    {
-
-        qDebug() << "      ++'tapped'for:" << elapsed << "seconds.changing session type:";
-        //if (oasis->getDuration() != USERDESIGNATED)
+    //Change duration
+    else if (oasis->getPower() == ON && elapsed < 1){
+        qDebug() << "      ++'tapped'for:" << elapsed << "seconds.changing session type:";   
         {
             oasis->nextDuration();
         }
-
-//        // durations
-//        #define TWENTY 1
-//        #define FORTYFIVE 2
-//        #define USERDESIGNATED 3
-
         return;
     }
-    //other cases...
 }
 
 void MainWindow::upPress(){
@@ -127,22 +114,38 @@ void MainWindow::toggleRightEar(){
 }
 
 void MainWindow::update(){
+    //reset counters if power off
+    if(oasis->getPower()==OFF){
+        if (shutdownCounter > 0){shutdownCounter=0;}
+        if (sessionRunTime > 0){sessionRunTime=0;}
+        return;
+    }
+    //idle shutdown counter
     if(oasis->getPower()==ON && oasis->getRunning()==false){
-        if (shutdownCounter < 120)
-        {
+        if (shutdownCounter < 120){
          shutdownCounter++;
          qDebug() << "              shutdown counter:" << shutdownCounter;
         }
-        else
-        {
+        else{
             shutdownCounter = 0;
             oasis->turnOff();
             return;
         }
     }
+    //session runtime counter
     else if(oasis->getPower()==ON && oasis->getRunning()==true){
-        //check how long a session is running for (or how much time is left)
+        if (shutdownCounter>0){shutdownCounter=0;}//reset idle shutdown counter
+        /*
+        if (oasis->getD){
+        }
+        else if(){
+        }
+        else if(){
+        }
+        */
+        sessionRunTime++; //session runtime counter
     }
+    //drain battery
     oasis->useBattery();
 }
 
