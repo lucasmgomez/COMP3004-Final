@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>402</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,17 +21,73 @@
     <property name="geometry">
      <rect>
       <x>289</x>
-      <y>129</y>
+      <y>99</y>
       <width>66</width>
-      <height>201</height>
+      <height>231</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLCDNumber" name="lcdInt4">
+      <widget class="QLCDNumber" name="lcdInt8">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
      background-color: rgba(0,255,0, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>8</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt7">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(0,255,0, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>7</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt6">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(201, 155, 28, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>6</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt5">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(201, 155, 28, 70);
+     width: 20px;
+ }
+</string>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>5</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="lcdInt4">
+       <property name="styleSheet">
+        <string notr="true">QLCDNumber {
+     background-color: rgba(201, 155, 28, 70);
      width: 20px;
  }
 </string>
@@ -45,7 +101,7 @@
       <widget class="QLCDNumber" name="lcdInt3">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(201, 155, 28, 70);
+     background-color: rgba(255, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -59,7 +115,7 @@
       <widget class="QLCDNumber" name="lcdInt2">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(201, 155, 28, 70);
+     background-color: rgba(255, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -85,88 +141,19 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>130</y>
-      <width>66</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLCDNumber" name="lcdInt4_2">
-       <property name="styleSheet">
-        <string notr="true">QLCDNumber {
-     background-color: rgba(255, 255 255, 10);
-     width: 20px;
- }
-</string>
-       </property>
-       <property name="intValue" stdset="0">
-        <number>4</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="lcdInt3_2">
-       <property name="styleSheet">
-        <string notr="true">QLCDNumber {
-     background-color: rgba(255, 255 255, 10);
-     width: 20px;
- }
-</string>
-       </property>
-       <property name="intValue" stdset="0">
-        <number>3</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="lcdInt2_2">
-       <property name="styleSheet">
-        <string notr="true">QLCDNumber {
-     background-color: rgba(0, 0, 0, 70);
-     width: 20px;
- }
-
-</string>
-       </property>
-       <property name="intValue" stdset="0">
-        <number>2</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLCDNumber" name="lcdInt1_2">
-       <property name="styleSheet">
-        <string notr="true">QLCDNumber {
-     background-color: rgba(255, 255 255, 10);
-     width: 20px;
- }
-</string>
-       </property>
-       <property name="intValue" stdset="0">
-        <number>1</number>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>301</y>
-      <width>31</width>
-      <height>31</height>
+      <x>220</x>
+      <y>280</y>
+      <width>51</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background-color: grey;
-border-image: url(:start.png);
+background: url(:start.png);
 background-repeat: none;
 }
 </string>
@@ -178,8 +165,8 @@ background-repeat: none;
    <widget class="QWidget" name="powerLED" native="true">
     <property name="geometry">
      <rect>
-      <x>569</x>
-      <y>259</y>
+      <x>629</x>
+      <y>249</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -188,7 +175,7 @@ background-repeat: none;
      <string notr="true">QWidget {
      border: 2px solid grey;
      border-radius: 5px;
-     background-color: rgba(0, 255,0, 100);
+     background-color: rgba(255, 255,255, 100);
      width: 20px;
  }
 </string>
@@ -197,17 +184,16 @@ background-repeat: none;
    <widget class="QPushButton" name="powerButton">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>290</y>
-      <width>31</width>
-      <height>32</height>
+      <x>620</x>
+      <y>280</y>
+      <width>51</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background-color: grey;
-border-image: url(:power.png);
-background-repeat: none;
+background: url(:power.png);
 }
 </string>
     </property>
@@ -219,15 +205,15 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>260</y>
+      <y>240</y>
       <width>41</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background-color: grey;
-border-image: url(:up.png);
+background: url(:up.png);
 background-repeat: none;
 }
 </string>
@@ -240,15 +226,15 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>300</y>
+      <y>290</y>
       <width>41</width>
-      <height>32</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
 background-color: grey;
-border-image: url(:down.png);
+background: url(:down.png);
 background-repeat: none;
 }
 </string>
@@ -260,7 +246,7 @@ background-repeat: none;
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>40</x>
       <y>30</y>
       <width>58</width>
       <height>16</height>
@@ -273,7 +259,7 @@ background-repeat: none;
    <widget class="QWidget" name="time20LED" native="true">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>40</x>
       <y>10</y>
       <width>31</width>
       <height>21</height>
@@ -292,20 +278,20 @@ background-repeat: none;
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>110</x>
       <y>30</y>
       <width>58</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>40min</string>
+     <string>45min</string>
     </property>
    </widget>
-   <widget class="QWidget" name="time40LED" native="true">
+   <widget class="QWidget" name="time45LED" native="true">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>110</x>
       <y>10</y>
       <width>31</width>
       <height>21</height>
@@ -315,7 +301,7 @@ background-repeat: none;
      <string notr="true">QWidget {
      border: 2px solid grey;
      border-radius: 5px;
-     background-color: rgba(0, 255, 0, 100);
+     background-color: rgba(255, 255, 255, 100);
      width: 20px;
  }
 </string>
@@ -324,7 +310,7 @@ background-repeat: none;
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>180</x>
       <y>30</y>
       <width>58</width>
       <height>16</height>
@@ -337,7 +323,7 @@ background-repeat: none;
    <widget class="QWidget" name="timeUserLED" native="true">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>180</x>
       <y>10</y>
       <width>31</width>
       <height>21</height>
@@ -451,7 +437,7 @@ border-image: url(:met.png);
      <string notr="true">QWidget {
      border: 2px solid grey;
      border-radius: 5px;
-     background-color: rgba(0, 255,0, 100);
+     background-color: rgba(255, 255,255, 100);
      width: 20px;
  }
 </string>
@@ -605,7 +591,7 @@ background-repeat: none;
    <widget class="QLabel" name="rightLED">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>700</x>
       <y>30</y>
       <width>31</width>
       <height>31</height>
@@ -631,8 +617,8 @@ background-repeat: none;
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>680</x>
-      <y>240</y>
+      <x>700</x>
+      <y>250</y>
       <width>31</width>
       <height>80</height>
      </rect>
@@ -702,7 +688,7 @@ background-repeat: none;
    <widget class="QLabel" name="otherWaveLED">
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>690</x>
       <y>0</y>
       <width>51</width>
       <height>31</height>
@@ -724,51 +710,6 @@ background-repeat: none;
     <property name="text">
      <string>50%</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_16">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>30</y>
-      <width>58</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>3hour</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="timeUserLED_2" native="true">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>10</y>
-      <width>31</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QWidget {
-     border: 2px solid grey;
-     border-radius: 5px;
-     background-color: rgba(255, 255, 255, 100);
-     width: 20px;
- }
-</string>
-    </property>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>58</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>20min</string>
-     </property>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

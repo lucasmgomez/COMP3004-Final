@@ -5,7 +5,7 @@
 Session::Session() {
 	duration = 1;
 	type = 1;
-	intensity = 0;
+    intensity = 1;
 }
 
 
@@ -13,6 +13,10 @@ Session::Session() {
 // Getters + Setters
 
 int Session::getDuration(){return duration;}
+
+int Session::getType(){return type;}
+
+int Session::getIntensity(){return intensity;}
 
 void Session::setDuration(int d) {
 	switch (d) {
@@ -42,7 +46,7 @@ void Session::setType(int t) {
 }
 
 void Session::setIntensity(int i) {
-	if (i >= 0) {
+    if (i >= 1) {
 		intensity = i;
 	}
 	else { cout << "Invalid intensity" << endl; }
@@ -54,7 +58,9 @@ void Session::setIntensity(int i) {
 
 void Session::changeIntensity(int incr) {
 	intensity = intensity + incr;
-	if (intensity < 0) { intensity = 0; }
+    if (intensity < 1) { intensity = 1; }
+    else if (intensity > 8) { intensity = 8;} //is the max intensity 8?
+    cout << "intensity:" << intensity;
 }
 
 void Session::print() const {
@@ -73,9 +79,9 @@ void Session::nextDuration(){
 }
 void Session::nextType(){
 
-    if (type+1 > HUNDREDHZ)
+    if (type+1 > THETA)
     {
-        setType((type+1) %HUNDREDHZ);
+        setType((type+1) %THETA);
     }
     else
     {
@@ -85,10 +91,18 @@ void Session::nextType(){
 void Session::prevType(){
     if (type-1 < 1)
     {
-        setType(HUNDREDHZ);
+        setType(THETA);
     }
     else
     {
         setType(type-1);
     }
 }
+
+void Session::nextIntensity(){
+    changeIntensity(1);
+}
+void Session::prevIntensity(){
+    changeIntensity(-1);
+}
+
