@@ -254,20 +254,14 @@ void MainWindow::softOff()
 }
 void MainWindow::updateDurUI(int dur){
     if (dur == TWENTY){
-        auto time20LED = findChild<QWidget*>("time20LED");
-        time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        auto time45LED = findChild<QWidget*>("time45LED");
-        time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto timeUserLED = findChild<QWidget*>("timeUserLED");
-        time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
     }
     else if (dur == FORTYFIVE){
-        auto time20LED = findChild<QWidget*>("time20LED");
-        time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto time45LED = findChild<QWidget*>("time45LED");
-        time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        auto timeUserLED = findChild<QWidget*>("timeUserLED");
-        timeUserLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->timeUserLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
     }
     else{
         // user set duration
@@ -278,44 +272,28 @@ void MainWindow::updateDurUI(int dur){
 
 void MainWindow::updateTypeUI(int type){
     if (type == MET){
-        auto freq1LED = findChild<QWidget*>("freq1LED");
-        freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        auto freq2LED = findChild<QWidget*>("freq2LED");
-        freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq3LED = findChild<QWidget*>("freq3LED");
-        freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq4LED = findChild<QWidget*>("freq4LED");
-        freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
     }
     else if (type == SUBDELTA){
-        auto freq1LED = findChild<QWidget*>("freq1LED");
-        freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq2LED = findChild<QWidget*>("freq2LED");
-        freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        auto freq3LED = findChild<QWidget*>("freq3LED");
-        freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq4LED = findChild<QWidget*>("freq4LED");
-        freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
     }
     else if (type == DELTA){
-        auto freq1LED = findChild<QWidget*>("freq1LED");
-        freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq2LED = findChild<QWidget*>("freq2LED");
-        freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq3LED = findChild<QWidget*>("freq3LED");
-        freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        auto freq4LED = findChild<QWidget*>("freq4LED");
-        freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
     }
     else if (type == THETA){
-        auto freq1LED = findChild<QWidget*>("freq1LED");
-        freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq2LED = findChild<QWidget*>("freq2LED");
-        freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq3LED = findChild<QWidget*>("freq3LED");
-        freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq4LED = findChild<QWidget*>("freq4LED");
-        freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
     }
 }
 
@@ -333,12 +311,9 @@ void MainWindow::updateIntUI(int j){
 
 void MainWindow::setDefaultLEDs(bool on){
     if (on){
-        auto powerLED = findChild<QWidget*>("powerLED");
-        powerLED->setStyleSheet("QWidget {border: 2px solid grey; border-radius: 5px; background-color: rgba(0, 255,0, 100); width: 20px; }");
-        auto time20LED = findChild<QWidget*>("time20LED");
-        time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        auto freq1LED = findChild<QWidget*>("freq1LED");
-        freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->powerLED->setStyleSheet("QWidget {border: 2px solid grey; border-radius: 5px; background-color: rgba(0, 255,0, 100); width: 20px; }");
+        ui->time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
 
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
@@ -351,30 +326,19 @@ void MainWindow::setDefaultLEDs(bool on){
         }
     }
     if (!on){
-        auto powerLED = findChild<QWidget*>("powerLED");
-        powerLED->setStyleSheet("QWidget {border: 2px solid grey; border-radius: 5px; background-color: rgba(255, 255,255, 100); width: 20px; }");
-        auto time20LED = findChild<QWidget*>("time20LED");
-        time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto time45LED = findChild<QWidget*>("time45LED");
-        time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq1LED = findChild<QWidget*>("freq1LED");
-        freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq2LED = findChild<QWidget*>("freq2LED");
-        freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq3LED = findChild<QWidget*>("freq3LED");
-        freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
-        auto freq4LED = findChild<QWidget*>("freq4LED");
-        freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->powerLED->setStyleSheet("QWidget {border: 2px solid grey; border-radius: 5px; background-color: rgba(255, 255,255, 100); width: 20px; }");
+        ui->time20LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->time45LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
 
-        auto leftLED = findChild<QLabel*>("leftLED");
-        leftLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
-        auto rightLED = findChild<QLabel*>("rightLED");
-        rightLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
+        ui->leftLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
+        ui->rightLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
 
-        auto shortWaveLED = findChild<QLabel*>("shortWaveLED");
-        shortWaveLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
-        auto otherWaveLED = findChild<QLabel*>("otherWaveLED");
-        otherWaveLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
+        ui->shortWaveLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
+        ui->otherWaveLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
 
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
@@ -420,33 +384,24 @@ void MainWindow::setConnectLEDs(int level){
 }
 
 void MainWindow::setBatteryUI(){
-
-    auto batteryEdit = findChild<QLineEdit*>("batteryEdit");
-    /*QRegularExpression re("\\d*");  // a digit (\d), zero or more times (*)
-    if (re.anchoredPattern(batteryEdit->text())){
-
-    }*/
-    auto battBar1 = findChild<QWidget*>("battBar1");
-    auto battBar2 = findChild<QWidget*>("battBar2");
-    auto battBar3 = findChild<QWidget*>("battBar3");
-    int level = batteryEdit->text().toInt();
+    int level = ui->batteryEdit->text().toInt();
     if (level > 70){
         // change battery display to full and green
-        battBar1->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        battBar2->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
-        battBar3->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
     }
     else if (level > 40 && level <= 70){
         // change battery display to semi full and yellow
-        battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
-        battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
-        battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
     }
     else{
         // change battery display to low and red
-        battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 100);width: 20px;}");
-        battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
-        battBar3->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
     }
 }
 
