@@ -22,8 +22,8 @@ class Oasis {
         void setBattery(float);		// manually set the battery level
 		void setConnection(int);	// manually set the connectivity
 		void setUser(int);		// change the current user
-        void setLeftEar(int); // set status of left ear connection
-        void setRightEar(int); // set status of right ear connection
+        void setLeftEar(bool); // set status of left ear connection
+        void setRightEar(bool); // set status of right ear connection
 
 		// functions
 		void turnOn();			// turns on the oasis pro
@@ -57,8 +57,8 @@ class Oasis {
 		int connection;			// connectivity (no, okay, or excellent)
 		bool toRecord;			// indicates if the current session is to be recorded
 		bool running;			// indicates if a session is currently running
-        int leftEarConnected;
-        int rightEarConnected;
+        bool leftEarConnected;
+        bool rightEarConnected;
 		
 };
 

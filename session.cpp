@@ -6,6 +6,7 @@ Session::Session() {
 	duration = 1;
 	type = 1;
 	intensity = 0;
+
 }
 
 
@@ -104,5 +105,32 @@ void Session::nextIntensity(){
 }
 void Session::prevIntensity(){
     changeIntensity(-1);
+}
+
+int Session::getDurationInMin(){
+    if (duration == TWENTY){
+        return 20;
+    }
+    else if (duration == FORTYFIVE){
+        return 45;
+    }
+    else if (duration == USERDESIGNATED){
+        return customUserDur;
+    }
+    return -1;
+}
+
+void Session::setCustomUserDur(int c){
+    if( c < 0){
+        cout << "duration cannot be negative";
+        customUserDur = 0;
+    }
+    else if(c > 45){
+        cout << "duration cannot be greater than 45 minutes";
+        customUserDur = 45;
+    }
+    else{
+        customUserDur = c;
+    }
 }
 

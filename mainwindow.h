@@ -23,8 +23,8 @@ public:
     Oasis* oasis;
     QTimer* t;
     QElapsedTimer* et;
-    int shutdownCounter = 0; //2mins/120secs force turn off
-    int sessionRunTime = 0; //counter for session runtime? per second.
+    int shutdownCounter = 0; //120secs force turn off; in seconds
+    int sessionRunTime = 0; //session run time; in seconds
 
     void initTimer();
     void initConnections();

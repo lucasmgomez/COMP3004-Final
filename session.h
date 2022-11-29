@@ -19,6 +19,8 @@ class Session {
 		void setDuration(int);
 		void setType(int);
 		void setIntensity(int);
+
+        void setCustomUserDur(int);
 		
 		// functions
 		void changeIntensity(int);	// increase intensity by the passed value 
@@ -29,12 +31,19 @@ class Session {
         void prevType(); //selects previous session type for currSession
         void nextIntensity(); //selects next intensity value
         void prevIntensity(); //selects previous intensity value
+
+        int getDurationInMin(); //return duration in minutes, depending on selected "mode"
+
+
 		
 	private:
 		int duration;
 		int type;
 		int intensity;
+
+        int customUserDur; //for user specified time, in minutes
 		
+
 		
 		
 };

@@ -186,13 +186,13 @@ void Oasis::toggleRightEar(){
     rightEarConnected = !rightEarConnected;
 }
 
-void  Oasis::setLeftEar(int)
+void  Oasis::setLeftEar(bool state)
 {
-
+    leftEarConnected = state;
 }
-void  Oasis::setRightEar(int)
+void  Oasis::setRightEar(bool state)
 {
-
+    rightEarConnected = state;
 }
 
 
