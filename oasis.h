@@ -48,6 +48,15 @@ class Oasis {
         void nextIntensity(); //selects next intensity value
         void prevIntensity(); //selects previous intensity value
 
+        void setLeftEar(bool);
+        void setRightEar(bool);
+
+        void setCustomUserDur(int);
+        int getDurationInMin();
+        void setDuration(int);
+        int getIntensity();
+
+
 
 		
 	private:

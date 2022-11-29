@@ -31,6 +31,10 @@ void MainWindow::initTimer()
 
 void MainWindow::initConnections()
 {
+    //left and right ear check boxes
+    connect(ui->leftBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(0)));
+    connect(ui->rightBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(1)));
+
     //power button
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
     connect(ui->powerButton,SIGNAL(released()),this,SLOT(powerRelease()));
@@ -168,19 +172,15 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
-    //temp for testing
-    // oasis->setConnection(2);
-    // oasis->setCustomUserDur(1);
-    // oasis->setDuration(3);
-    //temp for testing
-    if (oasis->getRunning()==false){
-        oasis->runSession(); //runSession checks if connection > 0 before running
-        sessionRunTime = 0;
-    }
     oasis->setConnection(ui->connectBox->currentIndex());
     setConnectLEDs(ui->connectBox->currentIndex());
     delay(2);
     updateIntUI(1);
+    if (oasis->getRunning()==false){
+        oasis->runSession(); //runSession checks if connection > 0 before running
+        sessionRunTime = 0;
+    }
+
 }
 
 void MainWindow::toggleLeftEar(){
@@ -191,6 +191,15 @@ void MainWindow::toggleRightEar(){
 }
 
 void MainWindow::update(){
+    /*
+        Add left and right ear connection stuff pg.6
+    */
+    if (!oasis->leftBox->checkState() && !oasis->rightBox->checkState()){
+
+    }
+
+
+
     //reset counters if power off
     if(oasis->getPower()==OFF){
         if (shutdownCounter > 0){shutdownCounter=0;}
@@ -250,6 +259,7 @@ void MainWindow::softOff()
     if(oasis->getIntensity()>1)
     {
         oasis->prevIntensity();
+        updateIntUI(oasis->getIntensity());
     }
 }
 void MainWindow::updateDurUI(int dur){
@@ -402,6 +412,20 @@ void MainWindow::setBatteryUI(){
         ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 100);width: 20px;}");
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
         ui->battBar3->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+    }
+}
+
+void MainWindow::updateEarUI(int ear){
+    if (ear == 0){
+        if (ui->leftBox->checkState()){
+            ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
+        }
+        else{
+            ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 0 , 0, 100);}");
+        }
+    }
+    else{
+
     }
 }
 

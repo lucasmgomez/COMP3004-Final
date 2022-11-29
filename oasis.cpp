@@ -17,9 +17,6 @@ Oasis::Oasis() {
 Oasis::~Oasis() {
 	if (currSession != NULL) { delete currSession; }
 }
-
-
-
 // getters + setters
 
 int Oasis::getLeftEarConnected() const {return leftEarConnected;}

@@ -924,7 +924,7 @@ background-repeat: none;
      <string>Update List</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="leftBox">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -937,7 +937,7 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="rightBox">
     <property name="geometry">
      <rect>
       <x>700</x>
