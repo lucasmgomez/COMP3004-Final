@@ -25,6 +25,9 @@ class Oasis {
         void setLeftEar(bool); // set status of left ear connection
         void setRightEar(bool); // set status of right ear connection
 
+        void setCustomUserDur(int); //sets custom user designated duration, in minutes
+        int getDurationInMin(); //gets duration in minutes based on current duration selection
+
 		// functions
 		void turnOn();			// turns on the oasis pro
 		void turnOff();			// turns off the oasis pro
@@ -47,6 +50,8 @@ class Oasis {
         void prevType(); //selects previous session type for currSession
         void nextIntensity(); //selects next intensity value
         void prevIntensity(); //selects previous intensity value
+
+
 		
 	private:
 		Session* currSession;		// pointer to the currSession to be ran

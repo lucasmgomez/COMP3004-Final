@@ -195,6 +195,12 @@ void  Oasis::setRightEar(bool state)
     rightEarConnected = state;
 }
 
+void Oasis::setCustomUserDur(int c){
+    currSession->setCustomUserDur(c);
+}
+int Oasis::getDurationInMin(){
+    return currSession->getDurationInMin();
+}
 
 
 

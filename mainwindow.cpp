@@ -103,6 +103,8 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
+
+    //oasis->setConnection(2);//temp for testing
     oasis->runSession(); //runSession checks if connection > 0 before running
 }
 
@@ -135,15 +137,16 @@ void MainWindow::update(){
     //session runtime counter
     else if(oasis->getPower()==ON && oasis->getRunning()==true){
         if (shutdownCounter>0){shutdownCounter=0;}//reset idle shutdown counter
-        /*
-        if (oasis->getD){
+
+        qDebug() << "       selected duration:" << oasis->getDurationInMin()*60 << " | runTime:" << sessionRunTime;
+
+        if (oasis->getDurationInMin()*60 - sessionRunTime > 0){
+            sessionRunTime++; //session runtime counter
         }
-        else if(){
+        else{
+            sessionRunTime = 0;
+            oasis->endSession();
         }
-        else if(){
-        }
-        */
-        sessionRunTime++; //session runtime counter
     }
     //drain battery
     oasis->useBattery();
