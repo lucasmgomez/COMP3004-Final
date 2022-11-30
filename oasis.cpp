@@ -75,7 +75,7 @@ void Oasis::useBattery() {
         else{
             setBattery(battery - (1/10.0));
         }
-        cout << "battery drained:" << getBattery() << endl;
+        //cout << "battery drained:" << getBattery() << endl;
     }
     //turn off power if battery is completely drained
     handleLowBattery();
@@ -84,17 +84,18 @@ void Oasis::useBattery() {
 void Oasis::handleLowBattery(){
     if (getBattery() < LOWTHRESHOLD && getBattery() > CRITICALTHRESHOLD)
     {
-        cout << "battery low:" << getBattery() << "%" << "(is <10%)";
+        cout << "       battery(low):" << getBattery() << "%" << "(is <25%,>10%)" << endl;
         batteryState = LOW;
     }
     else if (getBattery() < CRITICALTHRESHOLD)
     {
-        cout << "battery critical:" << getBattery() << "%" << "(is <10%)" << "stopping session until battery is charged.";
+        cout << "       battery(critical):" << getBattery() << "%" << "(is <10%)" << "stopping session until battery is charged." << endl;
         endSession(); // <-?
         batteryState = CRITICAL;
     }
     else if (getBattery() > LOWTHRESHOLD)
     {
+        cout << "       battery(charged):" << getBattery() << "%" << "(is >25%)" << endl;
         batteryState = CHARGED;
     }
 }
@@ -109,7 +110,7 @@ void Oasis::runSession() {
 		cout << "No connection... please check connectivity and try again." << endl;
 		return;
 	}
-    if (batteryState < CRITICALTHRESHOLD){
+    if (getBattery() < CRITICALTHRESHOLD){
         cout << "Battery levels critical" << getBattery() << "%, please recharge and try again." << endl;
         return;
     }

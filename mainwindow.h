@@ -5,7 +5,7 @@
 #include <QElapsedTimer>
 #include <QTimer>
 #include <QTime>
-#include <QDebug>
+//#include <QDebug>
 #include <QRegularExpression>
 #include "defs.h"
 #include "oasis.h"

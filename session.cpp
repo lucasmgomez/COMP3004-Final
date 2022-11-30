@@ -60,7 +60,7 @@ void Session::changeIntensity(int incr) {
 	intensity = intensity + incr;
     if (intensity < 1) { intensity = 1; }
     else if (intensity > 8) { intensity = 8;} //is the max intensity 8?
-    cout << "intensity:" << intensity;
+    cout << "Intensity:" << intensity << "/8" << endl;
 }
 
 void Session::print() const {
@@ -121,11 +121,11 @@ int Session::getDurationInMin(){
 
 void Session::setCustomUserDur(int c){
     if( c < 0){
-        cout << "duration cannot be negative";
+        cout << "duration cannot be negative" << endl;
         customUserDur = 0;
     }
     else if(c > 45){
-        cout << "duration cannot be greater than 45 minutes";
+        cout << "duration cannot be greater than 45 minutes" << endl;
         customUserDur = 45;
     }
     else{

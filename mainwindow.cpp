@@ -73,7 +73,8 @@ void MainWindow::updateList(){
 void MainWindow::savePress(){
     if (oasis->getPower()){
         if (ui->currentUser->document()->isEmpty()){
-            qDebug() << "Please specify user #";
+            //qDebug() << "Please specify user #";
+            cout << "Please specify user #" << endl;
             return;
         }
         oasis->setUser(ui->currentUser->toPlainText().toInt());
@@ -86,7 +87,8 @@ void MainWindow::savePress(){
 void MainWindow::replayPress(){
     if (oasis->getPower()){
         if (ui->replaySes->document()->isEmpty()){
-            qDebug() << "Please specify user # and replay session #";
+            //qDebug() << "Please specify user # and replay session #";
+            cout << "Please specify user # and replay session #" << endl;
             return;
         }
         oasis->setUser(ui->currentUser->toPlainText().toInt());
@@ -95,7 +97,8 @@ void MainWindow::replayPress(){
 }
 
 void MainWindow::powerPress(){
-    qDebug() << "power pressed (counting milliseconds)";
+    //qDebug() << "power pressed (counting milliseconds)";
+    cout << "power pressed (counting milliseconds)" << endl;
     et->start();
     //case for if user never releases power button?
 }
@@ -110,20 +113,23 @@ void MainWindow::powerRelease(){
         setDefaultLEDs(true);
         //setConnectLEDs();
 
-        qDebug() << "+turning device on: held " << elapsed << " seconds";
+        //qDebug() << "+turnOn: held button:" << elapsed << " sec.";
+        cout << "+turnOn: held button:" << elapsed << " sec." << endl;
         oasis->turnOn();
         return;
     }
     //Force turn off
     if (oasis->getPower() == ON && elapsed > 1){
         setDefaultLEDs(false);
-        qDebug() << "+turning device off, held button for:" << elapsed << "sec.";
+        //qDebug() << "+force turnOff, held button:" << elapsed << "sec.";
+        cout << "+force turnOff, held button:" << elapsed << "sec." << endl;
         oasis->turnOff();
         return;
     }
     //Change duration
     else if (oasis->getPower() == ON && elapsed < 1 && oasis->getRunning()==false){
-        qDebug() << "      ++'tapped'for:" << elapsed << "sec. [changing session type]:";   
+        //qDebug() << "      ++'tapped'for:" << elapsed << "sec. [changing session type]:";
+        cout << "      ++'tapped'for:" << elapsed << "sec. [changing session type]:" << endl;
         {
             oasis->nextDuration();
             Session* sess = oasis->getCurrSession();
@@ -132,7 +138,8 @@ void MainWindow::powerRelease(){
         return;
     }
     else if (oasis->getPower() == ON && elapsed < 1 && oasis->getRunning()==true){
-        qDebug() << "      ++'tapped'for:" << elapsed << "sec. [initiating softOff]:";
+        //qDebug() << "      ++'tapped'for:" << elapsed << "sec. [initiating softOff]:";
+        cout << "      ++'tapped'for:" << elapsed << "sec. [initiating softOff]:" << endl;
         {
             interruptSession=true;
         }
@@ -204,7 +211,7 @@ void MainWindow::update(){
     }
 
 
-    if (!ui->leftBox->checkState() && !ui->rightBox->checkState() & oasis->getRunning()==true){
+    if (!ui->leftBox->checkState() && !ui->rightBox->checkState() && oasis->getRunning()==true){
         handleDisconnect();
     }
 
@@ -218,7 +225,8 @@ void MainWindow::update(){
     if(oasis->getPower()==ON && oasis->getRunning()==false){
         if (shutdownCounter < 120){
          shutdownCounter++;
-         qDebug() << "              shutdown counter:" << shutdownCounter;
+         //qDebug() << "              " << shutdownCounter<<"sec./"<<"2min.[idle shutdown]";
+         cout<< "       " << shutdownCounter<<"sec./"<<"2min.[idle shutdown]" << endl;
         }
         else{
             shutdownCounter = 0;
@@ -229,7 +237,8 @@ void MainWindow::update(){
     //session runtime counter
     else if(oasis->getPower()==ON && oasis->getRunning()==true){
         if (shutdownCounter>0){shutdownCounter=0;}//reset idle shutdown counter
-        qDebug() << "       selected duration:" << oasis->getDurationInMin()*60 << " | runTime:" << sessionRunTime;
+        //qDebug() << "runTime:"<< sessionRunTime << "sec./" << oasis->getDurationInMin() << "min.";
+        cout << "runTime:"<< sessionRunTime << "sec./" << oasis->getDurationInMin() << "min." << endl;
 
         if (interruptSession == true) //interrupting a session and initiate softOff
         {
