@@ -23,6 +23,15 @@ using namespace std;
 //#define BETA 7
 //#define HUNDREDHZ 8
 
+// BATTERY LEVELS
+#define CRITICALTHRESHOLD 10
+#define LOWTHRESHOLD 25
+
+// BATTERY STATES
+#define CRITICAL 0
+#define LOW 1
+#define CHARGED 2
+
 // durations
 #define TWENTY 1
 #define FORTYFIVE 2

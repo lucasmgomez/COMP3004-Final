@@ -194,7 +194,7 @@ void MainWindow::update(){
     /*
         Add left and right ear connection stuff pg.6
     */
-    if (!ui->leftBox->checkState() && !ui->rightBox->checkState() & oasis->getPower()==ON){
+    if (!ui->leftBox->checkState() && !ui->rightBox->checkState() & oasis->getRunning()==true){
         handleDisconnect();
     }
 
@@ -399,17 +399,37 @@ void MainWindow::setBatteryUI(){
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
         ui->battBar3->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
     }
-    else if (level > 40 && level <= 70){
+    else if (level > CRITICALTHRESHOLD && level <= LOWTHRESHOLD){
         // change battery display to semi full and yellow
+        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
         ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
-        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
-    }
-    else{
-        // change battery display to low and red
-        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 100);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+    }
+    else if (level <= CRITICALTHRESHOLD){
+        // change battery display to low and red
         ui->battBar3->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 70);width: 20px;}");
     }
 }
 
@@ -454,7 +474,7 @@ void MainWindow::handleDisconnect(){
 
 void MainWindow::delay(int time)
 {
-    QTime dieTime= QTime::currentTime().addSecs(time);
+    QTime dieTime= QTime::currentTime().addMSecs(time);
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
