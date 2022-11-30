@@ -48,6 +48,10 @@ class Oasis {
         void nextIntensity(); //selects next intensity value
         void prevIntensity(); //selects previous intensity value
 
+        void handleLowBattery(); //Checks battery level and changes battery state into appropriate level
+        int getBatteryState(); //returns battery state, using defs.h
+
+
         void setLeftEar(bool);
         void setRightEar(bool);
 
@@ -68,8 +72,9 @@ class Oasis {
 		int connection;			// connectivity (no, okay, or excellent)
 		bool toRecord;			// indicates if the current session is to be recorded
 		bool running;			// indicates if a session is currently running
-        bool leftEarConnected;
-        bool rightEarConnected;
+        bool leftEarConnected; //indicates if left ear is connected
+        bool rightEarConnected; //indicates if right ear is connected
+        int batteryState; //indicates current battery state
 		
 };
 

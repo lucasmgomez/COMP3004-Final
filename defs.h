@@ -32,6 +32,13 @@ using namespace std;
 #define MAXUSERS 8
 #define MAXRECORD 8
 
+// BATTERY LEVELS
+#define CRITICALTHRESHOLD 10
+#define LOWTHRESHOLD 25
 
+// BATTERY STATES
+#define CRITICAL 0
+#define LOW 1
+#define CHARGED 2
 
 #endif

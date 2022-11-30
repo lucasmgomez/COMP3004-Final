@@ -12,6 +12,7 @@ Oasis::Oasis() {
 	running = false;
     leftEarConnected = false;
     rightEarConnected = false;
+    batteryState = CHARGED;
 }
 
 Oasis::~Oasis() {
@@ -74,14 +75,32 @@ void Oasis::useBattery() {
         else{
             setBattery(battery - (1/10.0));
         }
-
-
         cout << "battery drained:" << getBattery() << endl;
     }
     //turn off power if battery is completely drained
-    //"Your simulation should handle battery depletion as a
-        //function of length of therapy, intensity, and connection to skin."
-    //
+    handleLowBattery();
+}
+
+void Oasis::handleLowBattery(){
+    if (getBattery() < LOWTHRESHOLD && getBattery() > CRITICALTHRESHOLD)
+    {
+        cout << "battery low:" << getBattery() << "%" << "(is <10%)";
+        batteryState = LOW;
+    }
+    else if (getBattery() < CRITICALTHRESHOLD)
+    {
+        cout << "battery critical:" << getBattery() << "%" << "(is <10%)" << "stopping session until battery is charged.";
+        endSession(); // <-?
+        batteryState = CRITICAL;
+    }
+    else if (getBattery() > LOWTHRESHOLD)
+    {
+        batteryState = CHARGED;
+    }
+}
+
+int Oasis::getBatteryState(){
+    return batteryState;
 }
 
 void Oasis::runSession() {
@@ -90,6 +109,10 @@ void Oasis::runSession() {
 		cout << "No connection... please check connectivity and try again." << endl;
 		return;
 	}
+    if (batteryState < CRITICALTHRESHOLD){
+        cout << "Battery levels critical" << getBattery() << "%, please recharge and try again." << endl;
+        return;
+    }
 	cout << "Running session..." << endl;
 	currSession->print();
 	running = true;

@@ -32,8 +32,8 @@ void MainWindow::initTimer()
 void MainWindow::initConnections()
 {
     //left and right ear check boxes
-    connect(ui->leftBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(0)));
-    connect(ui->rightBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(1)));
+    //connect(ui->leftBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(0)));
+    //connect(ui->rightBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(1)));
 
     //power button
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
@@ -194,10 +194,18 @@ void MainWindow::update(){
     /*
         Add left and right ear connection stuff pg.6
     */
-    if (!oasis->leftBox->checkState() && !oasis->rightBox->checkState()){
+    //if (!oasis->leftBox->checkState() && !oasis->rightBox->checkState()){
 
+    //}
+
+    if (oasis->getBatteryState() == LOW)
+    {
+        //BLINKING HERE
     }
-
+    else if (oasis->getBatteryState() == CRITICAL)
+    {
+        //BLINKING HERE
+    }
 
 
     //reset counters if power off
@@ -416,7 +424,7 @@ void MainWindow::setBatteryUI(){
 }
 
 void MainWindow::updateEarUI(int ear){
-    if (ear == 0){
+    /*if (ear == 0){
         if (ui->leftBox->checkState()){
             ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
         }
@@ -426,7 +434,7 @@ void MainWindow::updateEarUI(int ear){
     }
     else{
 
-    }
+    }*/
 }
 
 void MainWindow::delay(int time)
