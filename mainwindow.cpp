@@ -148,13 +148,13 @@ void MainWindow::powerRelease(){
 }
 
 void MainWindow::upPress(){
-    if (oasis->getRunning()==false)
+    if (oasis->getRunning()==false && oasis->getPower()==ON)
     {
         oasis->nextType();
         Session* sess = oasis->getCurrSession();
         updateTypeUI(sess->getType());
     }
-    else
+    else if (oasis->getRunning()==true && oasis->getPower()==ON)
     {
         oasis->nextIntensity();
         Session* sess = oasis->getCurrSession();
@@ -163,13 +163,13 @@ void MainWindow::upPress(){
     }
 }
 void MainWindow::downPress(){
-    if (oasis->getRunning()==false)
+    if (oasis->getRunning()==false && oasis->getPower()==ON)
     {
         oasis->prevType();
         Session* sess = oasis->getCurrSession();
         updateTypeUI(sess->getType());
     }
-    else
+    else if (oasis->getRunning()==true && oasis->getPower()==ON)
     {
         oasis->prevIntensity();
         Session* sess = oasis->getCurrSession();
@@ -179,7 +179,7 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
-    if (oasis->getRunning()==false){
+    if (oasis->getRunning()==false && oasis->getPower()==ON){
         oasis->setConnection(ui->connectBox->currentIndex());
         setConnectLEDs(ui->connectBox->currentIndex());
         delay(2);
