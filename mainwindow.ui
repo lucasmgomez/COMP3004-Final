@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1143</width>
-    <height>440</height>
+    <height>419</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
       <widget class="QLCDNumber" name="lcdInt8">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(0,255,0, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -48,7 +48,7 @@
       <widget class="QLCDNumber" name="lcdInt7">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(0,255,0, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -62,7 +62,7 @@
       <widget class="QLCDNumber" name="lcdInt6">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(201, 155, 28, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -76,7 +76,7 @@
       <widget class="QLCDNumber" name="lcdInt5">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(201, 155, 28, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -90,7 +90,7 @@
       <widget class="QLCDNumber" name="lcdInt4">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(201, 155, 28, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -104,7 +104,7 @@
       <widget class="QLCDNumber" name="lcdInt3">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(255, 0, 0, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -118,7 +118,7 @@
       <widget class="QLCDNumber" name="lcdInt2">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(255, 0, 0, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -132,7 +132,7 @@
       <widget class="QLCDNumber" name="lcdInt1">
        <property name="styleSheet">
         <string notr="true">QLCDNumber {
-     background-color: rgba(255, 0, 0, 70);
+     background-color: rgba(0, 0, 0, 70);
      width: 20px;
  }
 </string>
@@ -583,7 +583,7 @@ background-repeat: none;
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-     color: rgba(0, 255,0, 100);
+     color: rgba(0, 0,0, 100);
  }
 </string>
     </property>
@@ -635,7 +635,7 @@ background-repeat: none;
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-     color: rgba(0, 255,0, 100);
+     color: rgba(0, 0,0, 100);
  }
 </string>
     </property>
@@ -924,7 +924,7 @@ background-repeat: none;
      <string>Update List</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="leftBox">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -937,7 +937,7 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="rightBox">
     <property name="geometry">
      <rect>
       <x>700</x>

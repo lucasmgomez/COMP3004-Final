@@ -32,8 +32,8 @@ void MainWindow::initTimer()
 void MainWindow::initConnections()
 {
     //left and right ear check boxes
-    //connect(ui->leftBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(0)));
-    //connect(ui->rightBox, SIGNAL(stateChanged(1)), this, SLOT(updateEarUI(1)));
+    connect(ui->leftBox, SIGNAL(stateChanged(int)), this, SLOT(updateEarUI()));
+    connect(ui->rightBox, SIGNAL(stateChanged(int)), this, SLOT(updateEarUI()));
 
     //power button
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
@@ -172,11 +172,11 @@ void MainWindow::downPress(){
 
 }
 void MainWindow::confirmPress(){
-    oasis->setConnection(ui->connectBox->currentIndex());
-    setConnectLEDs(ui->connectBox->currentIndex());
-    delay(2);
-    updateIntUI(1);
     if (oasis->getRunning()==false){
+        oasis->setConnection(ui->connectBox->currentIndex());
+        setConnectLEDs(ui->connectBox->currentIndex());
+        delay(2);
+        updateIntUI(1);
         oasis->runSession(); //runSession checks if connection > 0 before running
         sessionRunTime = 0;
     }
@@ -194,10 +194,6 @@ void MainWindow::update(){
     /*
         Add left and right ear connection stuff pg.6
     */
-    //if (!oasis->leftBox->checkState() && !oasis->rightBox->checkState()){
-
-    //}
-
     if (oasis->getBatteryState() == LOW)
     {
         //BLINKING HERE
@@ -207,6 +203,10 @@ void MainWindow::update(){
         //BLINKING HERE
     }
 
+
+    if (!ui->leftBox->checkState() && !ui->rightBox->checkState() & oasis->getRunning()==true){
+        handleDisconnect();
+    }
 
     //reset counters if power off
     if(oasis->getPower()==OFF){
@@ -369,7 +369,7 @@ void MainWindow::setConnectLEDs(int level){
     if (level == NO){
         for (int i = 1; i<= 8; ++i){
              auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
-            if (i < 3){
+            if (i > 6){
                 lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
             }
             else{
@@ -391,7 +391,7 @@ void MainWindow::setConnectLEDs(int level){
     else if (level == EXCELLENT){
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
-            if (i > 6){
+            if (i <= 3){
                 lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 255, 0, 70);width: 20px;}");
             }
             else{
@@ -409,37 +409,82 @@ void MainWindow::setBatteryUI(){
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
         ui->battBar3->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
     }
-    else if (level > 40 && level <= 70){
+    else if (level > CRITICALTHRESHOLD && level <= LOWTHRESHOLD){
         // change battery display to semi full and yellow
+        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
         ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
-        ui->battBar3->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
-    }
-    else{
-        // change battery display to low and red
-        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 100);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
         ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 100);width: 20px;}");
+    }
+    else if (level <= CRITICALTHRESHOLD){
+        // change battery display to low and red
         ui->battBar3->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        ui->battBar2->setStyleSheet("QWidget {background-color: rgba(201, 155, 28, 0);width: 20px;}");
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 0);width: 20px;}");
+        delay(500);
+        ui->battBar1->setStyleSheet("QWidget {background-color: rgba(255, 0, 0, 70);width: 20px;}");
     }
 }
 
-void MainWindow::updateEarUI(int ear){
-    /*if (ear == 0){
-        if (ui->leftBox->checkState()){
-            ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
-        }
-        else{
-            ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 0 , 0, 100);}");
-        }
+void MainWindow::updateEarUI(){
+
+    if (ui->leftBox->checkState()){
+        ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
     }
     else{
+        ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 0 , 0, 100);}");
+    }
 
-    }*/
+    if (ui->rightBox->checkState()){
+        ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
+    }
+    else{
+        ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 0 , 0, 100);}");
+    }
+
+}
+
+void MainWindow::handleDisconnect(){
+    for (int i = 1; i <= 8; ++i){
+        auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
+        lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+    }
+    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+    delay(1);
+    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+    delay(1);
+    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+    delay(1);
+    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+    delay(1);
+    updateIntUI(1);
+
 }
 
 void MainWindow::delay(int time)
 {
-    QTime dieTime= QTime::currentTime().addSecs(time);
+    QTime dieTime= QTime::currentTime().addMSecs(time);
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }

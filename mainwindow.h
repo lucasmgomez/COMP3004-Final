@@ -53,10 +53,11 @@ private slots:
     void updateDurUI(int);
     void updateTypeUI(int);
     void updateIntUI(int);
-    void updateEarUI(int);
+    void updateEarUI();
     void setDefaultLEDs(bool);
     void setConnectLEDs(int);
     void setBatteryUI();
+    void handleDisconnect();
 
 
     void delay(int);
