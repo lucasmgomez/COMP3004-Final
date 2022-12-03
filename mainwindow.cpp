@@ -148,6 +148,10 @@ void MainWindow::powerRelease(){
 }
 
 void MainWindow::upPress(){
+    if(!ui->leftBox->checkState() && !ui->rightBox->checkState() && oasis->getRunning()==true && oasis->getPower()==ON){
+        cout<<"     Unattached ears: cannot change intensity"<<endl;
+        return;
+    }
     if (oasis->getRunning()==false && oasis->getPower()==ON)
     {
         oasis->nextType();
@@ -163,6 +167,10 @@ void MainWindow::upPress(){
     }
 }
 void MainWindow::downPress(){
+    if(!ui->leftBox->checkState() && !ui->rightBox->checkState() && oasis->getRunning()==true && oasis->getPower()==ON){
+        cout<<"     Unattached ears: cannot change intensity"<<endl;
+        return;
+    }
     if (oasis->getRunning()==false && oasis->getPower()==ON)
     {
         oasis->prevType();
@@ -215,10 +223,11 @@ void MainWindow::update(){
         handleDisconnect();
     }
 
-    //reset counters if power off
+    //reset counters if power off, adjust gui
     if(oasis->getPower()==OFF){
         if (shutdownCounter > 0){shutdownCounter=0;}
         if (sessionRunTime > 0){sessionRunTime=0;}
+        setDefaultLEDs(false);
         return;
     }
     //idle shutdown counter

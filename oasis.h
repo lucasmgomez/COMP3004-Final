@@ -29,8 +29,8 @@ class Oasis {
 		void turnOn();			// turns on the oasis pro
 		void turnOff();			// turns off the oasis pro
 		void useBattery();		// decreases battery level
-		void runSession();		// start currSession
-		void endSession();		// end currSession and turn off oasis pro
+        void runSession();		// start currSession
+        void endSession();		// end currSession and turn off oasis pro
 		void replay(int);		// replay the selected session from the currUser's recorded sessions
 		void record();			// set record to true so that the currSession will be recorded
 		void selectDuration(int);	// set duration for currSession
