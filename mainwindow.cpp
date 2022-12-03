@@ -421,6 +421,10 @@ void MainWindow::setConnectLEDs(int level){
 
 void MainWindow::setBatteryUI(){
     int level = ui->batteryEdit->text().toInt();
+
+    //force the battery power in oasis to change
+    oasis->setBattery(level);
+
     if (level > 70){
         // change battery display to full and green
         ui->battBar1->setStyleSheet("QWidget {background-color: rgba(0, 255, 0, 100);width: 20px;}");
