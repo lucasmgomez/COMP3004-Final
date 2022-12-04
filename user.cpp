@@ -26,7 +26,7 @@ void User::record(Session* s) {
 		return;
 	}
 	cout << "Recording current session" << endl;
-	recorded[numRecord] = s;
+    recorded[numRecord] = new Session(*s);
 	numRecord++;
 }
 

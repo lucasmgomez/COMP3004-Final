@@ -137,7 +137,7 @@ void Oasis::endSession() {
 
 void Oasis::replay(int session) {
 	if (power == OFF) { return; }
-	currSession = users[currUser].replay(session);
+    currSession = new Session(users[currUser].replay(session));
 	runSession();
 }
 

@@ -11,7 +11,7 @@ class Session {
 	public:
 		// cosntructor
 		Session();
-		
+        Session(Session*);
 		// getters + setters
         int getDuration();
         int getType();

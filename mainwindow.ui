@@ -577,6 +577,7 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -602,6 +603,7 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -627,6 +629,7 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>12</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -654,6 +657,7 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>12</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -716,7 +720,7 @@ background-repeat: none;
     </item>
     <item>
      <property name="text">
-      <string>EXCELLENt</string>
+      <string>EXCELLENT</string>
      </property>
     </item>
    </widget>
@@ -1021,7 +1025,7 @@ background-repeat: none;
      <x>0</x>
      <y>0</y>
      <width>1143</width>
-     <height>37</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

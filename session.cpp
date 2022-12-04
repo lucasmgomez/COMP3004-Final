@@ -8,6 +8,13 @@ Session::Session() {
     intensity = 1;
 }
 
+Session::Session(Session* ses) {
+    duration = ses->getDuration();
+    type = ses->getType();
+    intensity = ses->getIntensity();
+}
+
+
 
 
 // Getters + Setters

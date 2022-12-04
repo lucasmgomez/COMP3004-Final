@@ -71,28 +71,59 @@ void MainWindow::updateList(){
 }
 
 void MainWindow::savePress(){
-    if (oasis->getPower()){
+    if (oasis->getPower() && oasis->getRunning()){
         if (ui->currentUser->document()->isEmpty()){
             //qDebug() << "Please specify user #";
             cout << "Please specify user #" << endl;
             return;
         }
-        oasis->setUser(ui->currentUser->toPlainText().toInt());
+        if (ui->currentUser->toPlainText().toInt() < MAXUSERS){
+            oasis->setUser(ui->currentUser->toPlainText().toInt());
+        }
+        else{
+            cout << "Invalid user #" << endl;
+            return;
+        }
         oasis->record();
-        oasis->endSession(); // for testing needs to be remove when endSession implement inside Oasis
+        oasis->endSession();
         updateList();
     }
 }
 
 void MainWindow::replayPress(){
-    if (oasis->getPower()){
-        if (ui->replaySes->document()->isEmpty()){
-            //qDebug() << "Please specify user # and replay session #";
-            cout << "Please specify user # and replay session #" << endl;
+    User* user;
+    if (oasis->getPower() && oasis->getRunning()==false  ){
+        if (ui->currentUser->document()->isEmpty()){
+            //qDebug() << "Please specify user #";
+            cout << "Please specify user #" << endl;
             return;
         }
-        oasis->setUser(ui->currentUser->toPlainText().toInt());
-        oasis->replay(ui->replaySes->toPlainText().toInt());
+        if (ui->replaySes->document()->isEmpty()){
+            //qDebug() << "Please specify user # and replay session #";
+            cout << "Please specify replay session #" << endl;
+            return;
+        }
+        if (ui->currentUser->toPlainText().toInt() < MAXUSERS){
+            oasis->setUser(ui->currentUser->toPlainText().toInt());
+            user=oasis->getUser();
+            updateList();
+        }
+        else{
+            cout << "Invalid user #" << endl;
+            return;
+        }
+        if (ui->replaySes->toPlainText().toInt() < user->getnumRecord()){
+            oasis->setConnection(ui->connectBox->currentIndex());
+            setConnectLEDs(ui->connectBox->currentIndex());
+            delay(2000);
+            updateIntUI(1);
+            cout << "Replaying user: "<<ui->currentUser->toPlainText().toInt() <<" session #: "<<ui->replaySes->toPlainText().toInt()<< endl;
+            oasis->replay(ui->replaySes->toPlainText().toInt());
+            sessionRunTime = 0;
+        }
+        else{
+            cout << "Invalid recording #" << endl;
+        }
     }
 }
 
