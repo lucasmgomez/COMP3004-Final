@@ -569,7 +569,7 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>30</y>
+      <y>60</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -577,7 +577,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -594,8 +593,8 @@ background-repeat: none;
    <widget class="QLabel" name="rightLED">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>30</y>
+      <x>710</x>
+      <y>60</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -603,7 +602,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -617,56 +615,58 @@ background-repeat: none;
      <string>R</string>
     </property>
    </widget>
-   <widget class="QLabel" name="shortWaveLED">
+   <widget class="QLabel" name="shortLabel">
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>0</y>
-      <width>51</width>
-      <height>31</height>
+      <y>30</y>
+      <width>41</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-     color: rgba(0, 0,0, 100);
- }
+background-color: none;
+border-image: url(:short.png);
+background-repeat: none;
+}
 </string>
     </property>
     <property name="text">
-     <string>SHORT</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="otherWaveLED">
+   <widget class="QLabel" name="fiftyLabel">
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>0</y>
-      <width>51</width>
-      <height>31</height>
+      <y>30</y>
+      <width>31</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel {
-     color: rgba(0 ,0,0, 100);
- }
+background-color: none;
+border-image: url(:fiftyperc.png);
+background-repeat: none;
+}
 </string>
     </property>
     <property name="text">
-     <string>50%</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLineEdit" name="batteryEdit">
@@ -928,7 +928,7 @@ background-repeat: none;
     <property name="geometry">
      <rect>
       <x>630</x>
-      <y>60</y>
+      <y>90</y>
       <width>21</width>
       <height>23</height>
      </rect>
@@ -940,8 +940,8 @@ background-repeat: none;
    <widget class="QCheckBox" name="rightBox">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>60</y>
+      <x>710</x>
+      <y>90</y>
       <width>21</width>
       <height>23</height>
      </rect>
@@ -950,6 +950,70 @@ background-repeat: none;
      <string/>
     </property>
    </widget>
+   <widget class="QWidget" name="shortLED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="fiftyLED" native="true">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>10</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+     border: 2px solid grey;
+     border-radius: 5px;
+     background-color: rgba(255, 255, 255, 100);
+     width: 20px;
+ }
+</string>
+    </property>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>58</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20min</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -957,7 +1021,7 @@ background-repeat: none;
      <x>0</x>
      <y>0</y>
      <width>1143</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>

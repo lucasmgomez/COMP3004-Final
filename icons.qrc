@@ -10,5 +10,7 @@
         <file>start.png</file>
         <file>save.png</file>
         <file>replay.png</file>
+        <file>short.png</file>
+        <file>fiftyperc.png</file>
     </qresource>
 </RCC>

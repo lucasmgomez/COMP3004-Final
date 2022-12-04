@@ -190,7 +190,7 @@ void MainWindow::confirmPress(){
     if (oasis->getRunning()==false && oasis->getPower()==ON){
         oasis->setConnection(ui->connectBox->currentIndex());
         setConnectLEDs(ui->connectBox->currentIndex());
-        delay(2);
+        delay(2000);
         updateIntUI(1);
         oasis->runSession(); //runSession checks if connection > 0 before running
         sessionRunTime = 0;
@@ -312,24 +312,28 @@ void MainWindow::updateTypeUI(int type){
         ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        updateWaveUI(false);
     }
     else if (type == SUBDELTA){
         ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
         ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        updateWaveUI(true);
     }
     else if (type == DELTA){
         ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
         ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        updateWaveUI(false);
     }
     else if (type == THETA){
         ui->freq1LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq2LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq3LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->freq4LED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        updateWaveUI(false);
     }
 }
 
@@ -353,13 +357,11 @@ void MainWindow::setDefaultLEDs(bool on){
 
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
-            if (i==1){
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(201, 155, 28, 70);width: 20px;}");
-            }
-            else{
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-            }
+            lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
         }
+
+        ui->shortLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->fiftyLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
     }
     if (!on){
         ui->powerLED->setStyleSheet("QWidget {border: 2px solid grey; border-radius: 5px; background-color: rgba(255, 255,255, 100); width: 20px; }");
@@ -373,8 +375,8 @@ void MainWindow::setDefaultLEDs(bool on){
         ui->leftLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
         ui->rightLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
 
-        ui->shortWaveLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
-        ui->otherWaveLED->setStyleSheet("QLabel {color: rgba(255, 255,255, 100);}");
+        ui->shortLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->fiftyLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
 
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
@@ -483,6 +485,17 @@ void MainWindow::updateEarUI(){
 
 }
 
+void MainWindow::updateWaveUI(bool subDelt){
+    if (subDelt){
+        ui->shortLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+        ui->fiftyLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+    }
+    else{
+        ui->shortLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(0, 255, 0, 100);width: 20px;}");
+        ui->fiftyLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
+    }
+}
+
 void MainWindow::handleDisconnect(){
     for (int i = 1; i <= 8; ++i){
         auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
@@ -490,16 +503,16 @@ void MainWindow::handleDisconnect(){
     }
     ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
     ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-    delay(1);
+    delay(1000);
     ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
     ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    delay(1);
+    delay(1000);
     ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
     ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-    delay(1);
+    delay(1000);
     ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
     ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    delay(1);
+    delay(1000);
     updateIntUI(1);
 
 }
