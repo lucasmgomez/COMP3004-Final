@@ -49,6 +49,12 @@ private slots:
     void updateDurUI(int);
     void updateTypeUI(int);
     void updateIntUI(int);
+<<<<<<< Updated upstream
+=======
+    void updateEarUI();
+    void updateWaveUI(bool);
+    void updateBatteryUI(float level);
+>>>>>>> Stashed changes
     void setDefaultLEDs(bool);
     void setConnectLEDs(int);
     void setBatteryUI();

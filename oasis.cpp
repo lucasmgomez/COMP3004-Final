@@ -66,9 +66,17 @@ void Oasis::turnOff() {
 void Oasis::useBattery() {
     if (power == ON)
     {
+<<<<<<< Updated upstream
         //if running == true, (if connection == 0?)
         if (currSession->getIntensity()>0){
             setBattery(battery - (currSession->getIntensity()/10.0));
+=======
+        //Will connection affect battery drain?
+        if (running == true && currSession->getIntensity()>0){
+            //longest session is 2700 seconds (45 mins)
+            //so battery should last at least 2700 seconds while at full intensity...
+            setBattery(battery - (100.00/2700.00 - 0.008 + ((currSession->getIntensity() * getConnection())/1000.00)));
+>>>>>>> Stashed changes
         }
         else{
             setBattery(battery - (1/10.0));
