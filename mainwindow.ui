@@ -577,7 +577,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -603,7 +602,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>23</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -629,7 +627,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -657,7 +654,6 @@ background-repeat: none;
     <property name="font">
      <font>
       <pointsize>12</pointsize>
-      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -697,44 +693,6 @@ background-repeat: none;
     </property>
     <property name="text">
      <string>Set</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="connectBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>320</y>
-      <width>103</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>NO</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>OKAY</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>EXCELLENT</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>300</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Connectivity</string>
     </property>
    </widget>
    <widget class="QFrame" name="frame">
@@ -1025,7 +983,7 @@ background-repeat: none;
      <x>0</x>
      <y>0</y>
      <width>1143</width>
-     <height>22</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>

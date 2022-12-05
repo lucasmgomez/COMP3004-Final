@@ -32,8 +32,8 @@ void MainWindow::initTimer()
 void MainWindow::initConnections()
 {
     //left and right ear check boxes
-    connect(ui->leftBox, SIGNAL(stateChanged(int)), this, SLOT(updateEarUI()));
-    connect(ui->rightBox, SIGNAL(stateChanged(int)), this, SLOT(updateEarUI()));
+    connect(ui->leftBox, SIGNAL(stateChanged(int)), this, SLOT(toggleLeftEar()));
+    connect(ui->rightBox, SIGNAL(stateChanged(int)), this, SLOT(toggleRightEar()));
 
     //power button
     connect(ui->powerButton,SIGNAL(pressed()),this,SLOT(powerPress()));
@@ -46,8 +46,6 @@ void MainWindow::initConnections()
 
     //confirm press
     connect(ui->startButton,SIGNAL(pressed()),this,SLOT(confirmPress()));
-
-    //left/right ear toggle
 
     //battery change
     connect(ui->pushButton, SIGNAL(pressed()), this, SLOT(setBatteryUI()));
@@ -113,13 +111,20 @@ void MainWindow::replayPress(){
             return;
         }
         if (ui->replaySes->toPlainText().toInt() < user->getnumRecord()){
-            oasis->setConnection(ui->connectBox->currentIndex());
-            setConnectLEDs(ui->connectBox->currentIndex());
+            setConnectLEDs();
             delay(2000);
             updateIntUI(1);
             cout << "Replaying user: "<<ui->currentUser->toPlainText().toInt() <<" session #: "<<ui->replaySes->toPlainText().toInt()<< endl;
             oasis->replay(ui->replaySes->toPlainText().toInt());
             sessionRunTime = 0;
+
+            //oasis->setConnection(ui->connectBox->currentIndex());
+            //setConnectLEDs(ui->connectBox->currentIndex());
+            //delay(2000);
+            //updateIntUI(1);
+            //cout << "Replaying user: "<<ui->currentUser->toPlainText().toInt() <<" session #: "<<ui->replaySes->toPlainText().toInt()<< endl;
+            //oasis->replay(ui->replaySes->toPlainText().toInt());
+            //sessionRunTime = 0;
         }
         else{
             cout << "Invalid recording #" << endl;
@@ -142,7 +147,6 @@ void MainWindow::powerRelease(){
     if (oasis->getPower() == OFF){
         // Turn on lights to default
         setDefaultLEDs(true);
-        //setConnectLEDs();
 
         //qDebug() << "+turnOn: held button:" << elapsed << " sec.";
         cout << "+turnOn: held button:" << elapsed << " sec." << endl;
@@ -219,8 +223,7 @@ void MainWindow::downPress(){
 }
 void MainWindow::confirmPress(){
     if (oasis->getRunning()==false && oasis->getPower()==ON){
-        oasis->setConnection(ui->connectBox->currentIndex());
-        setConnectLEDs(ui->connectBox->currentIndex());
+        setConnectLEDs();
         delay(2000);
         updateIntUI(1);
         oasis->runSession(); //runSession checks if connection > 0 before running
@@ -231,27 +234,18 @@ void MainWindow::confirmPress(){
 
 void MainWindow::toggleLeftEar(){
     oasis->toggleLeftEar();
+    updateEarUI();
 }
 void MainWindow::toggleRightEar(){
     oasis->toggleRightEar();
+    updateEarUI();
 }
 
 void MainWindow::update(){
-    /*
-        Add left and right ear connection stuff pg.6
-    */
-    if (oasis->getBatteryState() == LOW)
-    {
-        //BLINKING HERE
-    }
-    else if (oasis->getBatteryState() == CRITICAL)
-    {
-        //BLINKING HERE
-    }
 
 
-    if (!ui->leftBox->checkState() && !ui->rightBox->checkState() && oasis->getRunning()==true){
-        handleDisconnect();
+    if (oasis->getRunning()==true && oasis->getConnection() == NO){
+       setConnectLEDs();
     }
 
     //reset counters if power off, adjust gui
@@ -409,6 +403,9 @@ void MainWindow::setDefaultLEDs(bool on){
         ui->shortLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
         ui->fiftyLED->setStyleSheet("QWidget {border: 2px solid grey;border-radius: 5px;background-color: rgba(255, 255, 255, 100);width: 20px;}");
 
+        ui->leftBox->setChecked(false);
+        ui->rightBox->setChecked(false);
+
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
               lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
@@ -416,19 +413,32 @@ void MainWindow::setDefaultLEDs(bool on){
         }
 }
 
-void MainWindow::setConnectLEDs(int level){
-    if (level == NO){
-        for (int i = 1; i<= 8; ++i){
-             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
-            if (i > 6){
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-            }
-            else{
-                lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-            }
+void MainWindow::setConnectLEDs(){
+    if (oasis->getConnection() == NO){
+        for (int i = 1; i <= 8; ++i){
+            auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
+            lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
         }
+        while (oasis->getConnection() == NO){
+            ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+            ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+            delay(1000);
+            ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+            ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+            delay(1000);
+            ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+            ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
+            delay(1000);
+            ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+            ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
+            delay(1000);
+        }
+        setConnectLEDs();
+        delay(2000);
+        updateIntUI(1);
+
     }
-    else if (level == OKAY){
+    else if (oasis->getConnection() == OKAY){
         for (int i = 1; i<= 8; ++i){
              auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
             if (3 < i && i <= 6){
@@ -439,7 +449,7 @@ void MainWindow::setConnectLEDs(int level){
             }
         }
     }
-    else if (level == EXCELLENT){
+    else if (oasis->getConnection() == EXCELLENT){
         for (int i = 1; i <= 8; ++i){
             auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
             if (i <= 3){
@@ -500,20 +510,27 @@ void MainWindow::setBatteryUI(){
 
 void MainWindow::updateEarUI(){
 
-    if (ui->leftBox->checkState()){
+    if (ui->leftBox->checkState() && !ui->rightBox->checkState()){
         ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
+        ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 0,0, 100);}");
+        oasis->setConnection(OKAY);
+
     }
-    else{
+    else if (!ui->leftBox->checkState() && ui->rightBox->checkState()){
         ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 0 , 0, 100);}");
-    }
-
-    if (ui->rightBox->checkState()){
         ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
+        oasis->setConnection(OKAY);
+    }
+    else if (ui->leftBox->checkState() && ui->rightBox->checkState()){
+        ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
+        ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 255,0, 100);}");
+        oasis->setConnection(EXCELLENT);
     }
     else{
-        ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 0 , 0, 100);}");
+        ui->leftLED->setStyleSheet("QLabel {color: rgba(0, 0,0, 100);}");
+        ui->rightLED->setStyleSheet("QLabel {color: rgba(0, 0,0, 100);}");
+        oasis->setConnection(NO);
     }
-
 }
 
 void MainWindow::updateWaveUI(bool subDelt){
@@ -527,26 +544,6 @@ void MainWindow::updateWaveUI(bool subDelt){
     }
 }
 
-void MainWindow::handleDisconnect(){
-    for (int i = 1; i <= 8; ++i){
-        auto lcdInt = findChild<QLCDNumber*>("lcdInt"+QString::number(i));
-        lcdInt->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    }
-    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-    delay(1000);
-    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    delay(1000);
-    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(255, 0, 0, 70);width: 20px;}");
-    delay(1000);
-    ui->lcdInt7->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    ui->lcdInt8->setStyleSheet("QLCDNumber {background-color: rgba(0, 0, 0, 70);width: 20px;}");
-    delay(1000);
-    updateIntUI(1);
-
-}
 
 void MainWindow::delay(int time)
 {
