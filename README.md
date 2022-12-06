@@ -4,7 +4,7 @@
 Members:
 - Abdulaah Emin 101130854
 
-- Lucas Gomez
+- Lucas Gomez 101172122
 
 - Rebecca Littlefield
 
