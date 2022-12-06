@@ -27,11 +27,13 @@ Responsibility Breakdown:
 
 File Organization:
 Code files: main.cpp,mainwindow.cpp,defs.h,mainwindow.h,mainwindow.ui,oasis.cpp,oasis.h,session.cpp,session.h,user.cpp,user.h,oasis-pro-comp3004.pro
+
 Images Used: delta.png,down.png,fiftyperc.png,met.png,power.png,replay.png,save.png,short.png,start.png,sub-delt.png,theta.png,up.png
+
 Documenation: /Documentation folder contains the main COMP3004_Project.pdf which contains everything
 
 Tested Scenarios:
-* All of these tested scenarios work*
+* All of these tested scenarios work
 
 T1: Regular use (Excellent ear connection)
 
