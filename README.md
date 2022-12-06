@@ -45,12 +45,10 @@ T4: Ear disconnected
 
 T5: Session recording
 
-T6: Pausing the session
+T6: Replay recorded session
 
-T7: Resuming session
+T7: Low battery 
 
-T8: Low battery 
+T8: Critically low battery
 
-T9: Critically low battery
-
-T10: Turn off while the session is running
+T9: Turn off while the session is running
