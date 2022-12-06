@@ -8,7 +8,7 @@ Members:
 
 - Rebecca Littlefield
 
-- Spencer Low
+- Spencer Low 101114608
 
 Responsibility Breakdown:
 - Source Code: Abdulaah,Lucas,Rebecca,Spencer
