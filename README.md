@@ -6,7 +6,7 @@ Members:
 
 - Lucas Gomez 101172122
 
-- Rebecca Littlefield
+- Rebecca Littlefield 101104319
 
 - Spencer Low 101114608
 
