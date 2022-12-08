@@ -51,6 +51,3 @@ DISTFILES += \
 
 RESOURCES += \
     icons.qrc \
-
-
-
